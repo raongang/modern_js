@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>웹브라우저의입출력1</title>
+    
+<script>
+// console.dir -> 객체의 대화형 목록을 출력, 객체의 프로퍼티를 나열함.
+    
+    console.time("print_data");
+    var p = {x:1,y:2};
+    console.dir(p);
+    console.timeEnd("print_data");
+
+    
+     //함수를 이벤트 처리기로 등록하는 방법1 - HTML요소의 속성으로 등록하는 방법 
+     function displayTime(){
+         var d = new Date();
+         console.log("현재 시각은 " + d.toLocaleDateString() + "입니다.");
+     }  
+
+     //함수를 이벤트 처리기로 등록하는 방법2 - DOM(Document Object Model)요소의 프로퍼티로 등록하는 방법
+
+    //window 객체의 onload 프로퍼티에 리터럴 함수를 생성하여 대입
+    window.onload = function(){
+        var button = document.getElementById("button");
+        console.log("onkeydown : " + button.onkeydown); // null
+        button.onclick = displayTime;
+    };    
+
+</script>    
+</head>
+
+<body>
+HTML요소를 동적으로 읽고 쓰기
+<input type="button" value="버튼1" onClick="displayTime()">
+<input type="button" value="버튼2" id="button">
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>테스트</title>
+</head>
+<body>
+
+<script>
+  
+  function fact(n){
+    if(n<=1) return n;
+    return n*fact(n-1);
+    
+    }
+
+    for(var j=1; j<10; j++){
+        console.log(j + "!= " + fact(j));
+        //html문서를 body에 출력
+        document.write(j+"! = " + fact(j) + "<br />");
+    }  
+</script>
+</body>
+</html>

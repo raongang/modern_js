@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>Array</title>
+</head>
+<body>
+<script>
+    
+    //배열 리터럴 생성
+    var a = [2,,4];
+    console.log(a);
+    console.log(a);
+    
+    //변수의 요소에는 변수와 마찬가지로 모든 타입의 값이 올수 있다.
+    var various = [3.14,"pi",true,{x:1,y:2},[2,4,6,8]];
+    console.log(various); console.log("===================================================================");
+    var a = ["A","B","C","D"];
+    a.length=2;
+    console.log(a); //A,B
+    console.log("===================================================================");
+    
+    a.length=10;
+    console.log(a); 
+
+    //array생성자로 생성
+    var evens = new Array(2,4,6,8);
+    var emtpy = new Array();
+    var a = new Array(2,4);
+    var various = new Array(3.14,"pi",true,{x:1,y:2},[2,4,6,8]);
+    
+    //인수가 하나면 배열길이 만큼 생성
+    var x = new Array(3);
+    console.log(x.length);
+    console.log(x);
+    
+    //var x = new Array(-3); //error
+    
+    //배열은 객체
+    var a = ["A1","B1","C1","D1"];
+    console.log(a["2"]);
+    console.log(a[2]);
+    console.log(a[4]); //undefined 
+    
+    
+    /* C나 JAVA에 없는 Array 의 특징(자바스크립의 배열은 Array 객체라서 가능)
+    배열 요소의 추가와 삭제 */
+    var a = ["A2","B2","C2"];
+    a[3] = "D2";
+    console.log(a); //["A","B","C","D"]
+    
+    //push - 배열의 끝에 추가
+    var a = ["A3","B3","C3"];
+    a.push("D3");
+    console.log("push : " + a);
+    
+    //delete - 특정배열 요소를 삭제.
+    delete a[1];
+    console.log("delete : " + a);
+    console.log("after delete then length : " + a.length);
+    
+    /* 희소 배열 */
+    var a = ["A5","B5","C5"];
+    a[4] = "E5";
+    console.log("희소배열 : " + a);
+    console.log(a.length);
+    
+    //배열요소가 있는지 확인하기
+    for(var i in a) console.log(i); //0,1,2,4
+    a.hasOwnProperty("3"); // false
+    a.hasOwnProperty("4"); // true
+     
+    
+</script>
+</body>
+</html>

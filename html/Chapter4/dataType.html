@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>Data Type</title>
+</head>
+<body>
+<script>
+    //ECMAScript6부터 추가
+    
+    //호출할때마다 새로운 값 생성
+    var sym1 = Symbol();
+    var sym2 = Symbol();
+    
+    /* <3.3.1> Symbol */
+    console.log(sym1==sym2);
+    
+    var HEART = Symbol('하트');
+    console.log(HEART.toString());
+    
+    
+    //전역 레지스트리에 저장, 문자열과 연결된 심벌생성
+    var sym3 = Symbol.for("club");
+    var sym4 = Symbol.for("club");
+    
+    console.log(sym3==sym4);
+    
+    //연결 문자열 출력
+    console.log(Symbol.keyFor(sym3));
+    console.log(Symbol.keyFor(sym2)); //undefined
+    
+    /* 3.2 템플릿 리터럴  */
+    //문자열 표현구문
+    var t =`Man errs as long as 
+            he strives.`;
+    var t2 = "Man errs as long as \n he strives2.";
+    var t3 = String.raw`Man errs as long as\n he strives3.`
+    var t4 = `Man errs as long as\n he strives4.`;
+    
+    console.log(t);
+    console.log(t2);
+    console.log(t3);
+    console.log(t4);
+    
+    var a=2, b=3;
+    console.log(`${a} + ${b} = ${a+b}`)
+    var now = new Date();
+    console.log(`오늘은 ${now.getMonth()+1} 월 ${now.getDate()} 일입니다.`);
+    
+    
+    
+</script>
+</body>
+</html>
+
+

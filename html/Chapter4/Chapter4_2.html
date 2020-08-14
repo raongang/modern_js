@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>함수정의</title>
+</head>
+<body>
+<script>
+    
+    
+  /** 
+       함수를 정의하는 방법
+        
+        1. 함수 선언문으로 정의 
+          function square(x) { return x*x; }
+        2. 함수 리터럴로 정의하는 방법
+           var square = function(x) { return x*x; }
+        3. Function 생성자로 정의
+           var square = new Function("x", return x*x" );
+        4. 화살표 함수 표현식으로 정의 (ECMAScript6)
+           var square = x=>x*x;
+        
+    
+        ※ 중요
+          - java script에서 함수는 객체이다.
+          - 함수선언문으로 함수를 선언하면 내부적으로는 그 함수 이름을 변수 이름으로 한 변수와 함수객체가 만들어지고, 그 변수에 함수 객체의 참조가 저장된다. 
+  */    
+    
+  /* 함수 리터럴 정의
+      - 이름이 없기 때문에, 익명함수 또는 무명함수라고 함.
+      - 끝에 세미콜론 필수.
+      - 중요) 자바스크립트에서 함수는 일급객체이며, 클로저를 정의할 수 있음.
+  */
+
+  // console.log(square(4)); //error 
+  var square = function sq(x){ return x*x; };
+  console.log(square(5));
+
+  var circle ={
+      center : {x:1.0, y:2.0}, //객체.
+      radius : 2.5,
+      area : function(){ 
+             //메소드 ,this - circle
+             return Math.PI * this.radius * this.radius; 
+             }
+  }
+  console.log(circle.area());
+    
+    
+
+ //추가
+circle.translate = function(a,b){
+    this.center.x = this.center.x + a;
+    this.center.y = this.center.y + b;
+}
+
+circle.translate(1,2);
+console.log(circle.center);
+    
+
+    
+</script>
+</body>
+</html>

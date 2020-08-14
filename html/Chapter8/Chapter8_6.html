@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>고차함수</title>
+</head>
+<script>
+    
+    /* 8.9.1 고차함수 : 함수를 인수로 받는 함수 또는 함수를 반환하는 함수.
+                       처리패턴이 같은 작업을 추상화하여 하나로 합칠 수 있음. */     
+    digits= "";
+    for(var i=0; i<10;i++){
+        digits+=i;
+    }    
+    console.log("digits : " + digits); 
+    
+    randomChars="";
+    for(var i=0; i<8; i++){
+      randomChars+=String.fromCharCode(Math.floor(Math.random()+26) + "a".charCodeAt(0));
+    }
+    console.log("randomChars : " + randomChars);
+    
+    //위의 중복되는 for문 2개를 고차함수로 정의.
+    function joinStrings(n,f){
+        var s="";
+        for(var i=0;i<n;i++){
+            s+=f(i);
+        }
+        return s;
+    }
+    
+    var fdigit = joinStrings(10,function(i){return i;});
+    var frandomChars = joinStrings(8, function(i){
+       //console.log(i);
+       return String.fromCharCode(Math.floor(Math.random()+26) + "a".charCodeAt(0));
+    });
+    
+    console.log("fdigit : " + fdigit);
+    console.log("frandomChars : " + frandomChars);
+
+    /* 8.9.4 함수의 합성 : f(x), g(x) -> f(g(x)) */
+    function compose(f,g){
+        return function(x){
+            return f(g(x));
+        }
+    } 
+    var square = function(x){ return x*x; };
+    var add1 = function(x) { return x+1; }; 
+    var h = compose(square,add1);
+    console.log(h(2)); //9.
+    
+    //인수를 여러개 받아서 합성하는 함수.
+    function compose(f,g){
+        return function(){
+            return f.call(this,g.apply(this,arguments));
+        };    
+    }
+    
+    /* 8.9.5 부분 함수 
+      - 인수를 여러개 받는 함수의 몇몇 인수를 지정해서 새로운 함수를 생성하는 기법.
+    */
+    
+    function product(x,y) {     
+        console.log(this); //windows 
+        y = y||1;
+        return x*y;
+    }
+    /*
+    product2 = function(y) { return product(2,y);};
+    console.log(product2(3)); //6
+    */
+    
+    //bind()를 이용해서 부분함수로 생성.
+    product3 = product.bind(null,2);
+    console.log(product3());
+ 
+    /* 8.9.6 커링 
+      - 인수를 두개 이상 받는 함수를 분해하여 인수가 하나인 함수의 중첩함수로 변환하는 작업.
+    */
+    
+    var pow = function(exponent){
+        return function(base){
+            return Math.pow(base,exponent);
+        }
+    }
+    
+   
+</script>    
+<body>   
+</body>
+</html>
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>웹브라우저의입출력1</title>
+    
+<script>
+
+    //딱1번 - getData 가 callback함수
+    var timer= window.setTimeout(function getDate(){
+       console.log(new Date()) ;
+    },2000);
+    
+    clearTimeout(timer); //함수실행취소.
+    
+    //지정시간 반복 
+    var interval = setInterval(function(){
+        console.log("반복 : " + new Date());
+    },1000)
+
+    clearInterval(interval);
+    
+    //문자열이 내부적으로 eval()로 평가된후 실행.
+    //setInterval("console.log(new Date())", 1000);
+    
+</script>    
+</head>
+
+<body>
+Window 타이머
+</body>
+
+</html>

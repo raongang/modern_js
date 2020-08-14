@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>This</title>
+</head>
+<script>
+    
+    /* this  
+     - 함수가 호출되었을 때 그 함수가 속해 있던 객체의 참조
+     - 실행 문맥의 디스 바인딩 컴포넌트가 참조하는 객체
+     
+       디스바인딩 컴포넌트
+        - 그 함수를 호출한 객체의 참조가 저장됨.
+    */
+    
+    var tom = {
+        name : 'Tom',
+        sayHello : function(){
+            console.log("Hello!" + this.name);
+        }
+    };
+    
+    
+    tom.sayHello(); // 값은 함수의 참조.
+    
+    var huck = { name : "Huck"};
+    huck.sayHello = tom.sayHello;
+    
+    huck.sayHello();
+    
+    
+    
+    /* 1. 최상위 레벨 코드의 this - 전역객체를 가르킴. */
+    console.log(this); // Window
+    
+    /* 2. 이벤트처리기 안에 있는 this 
+       - 이벤트가 발생한 요소 객체(이벤트 처리기가 등록된 객체)를 가르킴.
+       
+       3. 생성자 함수 안에 있는 this
+        - 생성자로 생성한 객체를 가르킴.
+        
+        4. 생성자의 prototype 메소드안에 있는 this 
+         - 그 생성자로 생성한 객체를 가르킴.
+        
+        5. 직접 호출한 함수 안에 있는 this 
+         -  함수를 최상위 레벨의 코드에서 호출하면 함수 안에 있는 this가 전역객체를 가르킴.
+         
+        6. apply, call method
+        
+    */
+    
+    /*
+    function f(){
+        console.log(this);
+    }
+    
+    f();
+    var a={};
+    a.f = f;
+    a.f();
+    */
+    var a="A";
+    function f(){
+        var b = "B";
+        function g(){
+            var c = "C";
+            console.log(a+b+c);
+        }
+        g();
+    }
+    f();
+    
+    /* 가비지 컬렉션 */
+    var p = {x:1, y:2};
+    console.log(p);
+    p=null;
+    
+    
+</script>    
+<body>
+    
+</body>
+</html>

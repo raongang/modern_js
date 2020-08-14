@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>Closure</title>
+</head>
+<script>   
+    /* 클로저 : 함수객체와 렉시컬 환경 컴포넌트의 집합. */
+    
+    //클로저 잘못 사용한 예 - 반복문안에서 클로저 사용하기.
+    
+    window.onload = function(){
+        var elm = document.getElementsByTagName("input");
+        
+        for(var i=0; i < elm.length; i++){
+            console.log("i -> " + i);
+            elm[i].onclick = function(){
+                console.log(i);
+            }
+        }
+        
+        /*
+        for(var i=0; i<elm.length; i++)(function(_i){
+            elm[_i].onclick = function(){
+            console.log(_i);
+            };
+         })(i);
+         */
+        
+        //ECMAScript 6
+        for(let i=0; i < elm.length; i++){
+            console.log("let i -> " + i);
+            elm[i].onclick = function(){
+                console.log(i);
+            }
+        }
+    }
+
+</script>    
+<body>
+     <input type="button" value="0">
+     <input type="button" value="1">
+     <input type="button" value="2">
+     
+</body>
+</html>
+
+

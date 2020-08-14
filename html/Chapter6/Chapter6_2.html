@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>웹브라우저의입출력1</title>
+    
+<script>
+    //HTML요소의 innerHTML프로퍼티로 읽고 쓰기
+   //ex. 스톱워치
+   window.onload = function(){
+       
+       var startButton = document.getElementById("start");
+       var stopButton = document.getElementById("stop");
+       var display = document.getElementById("display");
+       var startTime, timer;
+       
+       startButton.onclick = start; //버튼활성화
+       
+       function start(){
+           startButton.onclick=null; //start버튼 비활성화 
+           stopButton.onclick = stop; //stop버튼 활성화
+           startTime = new Date();
+           //0.01초마다 경과한 시간을 표시 ( milliseconde )
+           timer = setInterval(function(){
+               var now = new Date();
+                   display.innerHTML = ((now-startTime)/1000).toFixed(2);
+           },10);
+       }
+       
+       function stop(){
+           console.log("stop!!");
+           clearInterval(timer);
+           startButton.onclick = start; //버튼활성화
+       }
+       
+   }//end window.onload 
+    
+</script>    
+</head>
+
+<body>
+HTML요소 동적으로 읽고 쓰기(Timer)
+<p id="display">0.00</p>
+<input id="start" type="button" value="시작">
+<input id="stop" type="button" value="스톱">
+</body>
+
+
+</html>
+

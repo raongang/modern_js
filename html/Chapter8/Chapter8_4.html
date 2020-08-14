@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>namespcae</title>
+</head>
+<script>   
+    /* namespcae */
+    
+    //1. 객체를 namespace로 활용
+    // myApp이 not null이면 myApp으로, null이면 {}로 적용.
+    // 만든 객체에 프로퍼티나 메소드등을 생성해서 이용.
+    var myApp = myApp || {};
+    
+    //2. 함수를 namespace로 활용
+    
+    /* 2-1. 즉시 실행함수
+     - 함수안에 선언된 변수의 유효범위는 함수내부이므로, 그 변수를 함수 밖에서 읽거나 쓸수 없음. */
+    var x = "global x";
+    (function(){
+       var x = "local x";
+       var y ="local y";
+    })();
+    
+    console.log(x);
+    //console.log(y); //y is not defined 
+    
+    /* 2-2. 모듈패턴  
+       - 즉시 함수는 함수밖에서 읽거나 쓸수 없으니, 전역 객체변수를 인자로 넘겨서 
+         해당 객체를 통해 프로퍼티를 생성한다.
+    */
+    
+    var Module = Module || {};
+    (function(_Module){
+        
+        //클로
+        var name="NoName"; //private function
+        function getName(){ //private function
+            return name;    
+        }
+        
+        //public function
+        _Module.showName = function(){
+            console.log(getName());
+        };
+        
+        //public function 
+        _Module.setName = function(x){
+            name = x;
+        };
+        
+    })(Module)
+    
+    Module.setName("Tom");
+    Module.showName();
+  
+</script>    
+<body>   
+</body>
+</html>
+
+

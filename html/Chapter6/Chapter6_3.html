@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<script>
+    window.onload = function(){
+        document.getElementById("button").onclick = function (){
+            var h = parseFloat(document.getElementById("height").value);
+            var w = parseFloat(document.getElementById("weight").value);
+            var bmi = document.getElementById("bmi");            
+            bmi.innerHTML = (w/h/h).toFixed(1);
+        };
+    };
+</script>
+
+<body>
+    <p>heigth : <input type="number" id="height">m</p>
+    <p>weight : <input type="number" id="weight">kg</p>
+    <p>your bmi is <output id="bmi">?</output></p>
+    <input type="button" id="button" value="calculate">
+</body>
+
+</html>

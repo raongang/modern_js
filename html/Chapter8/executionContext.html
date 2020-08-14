@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>test</title>
+
+<script>
+ /* 
+    execution context - 실행문맥
+     └ 실행 가능한 코드(전역코드, 함수코드, eval코드)가 실제로 실행되고 관리되는 영역
+     
+    1. execution context가 관리하는 component
+     └ LexicalEnvironment  (렉시컬 환경 컴포넌트)
+     └ VariableEnvironment (변수 환경)
+     └ ThisBinding (디스바인딩컴포넌트)
+
+   2. 렉시컬 환경 컴포넌트와 변수 환경 컴포넌트
+     - 렉시컬환경 타입의 컴포넌트
+   
+   3. ThisBinding 
+      - 그 함수를 호출한 객체의 참조가 저장되는 곳.
+      - 이것이 가르키는 값이 곧 execution context의 this가 됨.
+   
+   4. 렉시컬 환경 컴포넌트의 구성 
+      └ 정의 - 블록의 유효 범위안에 있는 식별자와 그 결과값이 저장됨(KEY,VALUE로 바인딩저장)
+      └ 구성 - 환경레코드(Environment Record), 외부 렉시컬 환경참조(Outer Lexical Environment Reference) 컴포넌트로 구성
+    
+     4-1. 환경 레코드
+     
+       └ 유효범위안에 있는 식별자를 기록하고 실행하는 영역 
+       └ 구성 : 선언적 환경레코드(Declarative Environtment Record) , 객체환경레코드(Object Environtment Record)
+       
+       4-1-1. 선언적 환경레코드
+        └ 실제 함수와 변수, catch문의 식별자와 실행 결과가 저장.
+        └ ex) 함수안에 선언된 변수 , 중첩함수의 참조 
+        
+        4-1-2. 객체환경레코드
+         └ 실행문맥외부에 별도로 저정된 객체의 참조에서 데이터를 읽거나 쓴다. (ex. 전역객체)
+         └ bindObject 프로퍼티에 바인딩.
+        
+     4-2. 외부 렉시컬 환경참조
+       - 함수를 둘러 싸고 있는 코드가 속한 렉시컬 환경 컴포넌트의 참조 저장 ( ex. 함수안의 함수중첩 )
+   
+ */
+    
+  //8.5.5 전역 환경과 전역객체의 생성  
+  
+ // 8.5.9 환경레코드와 지역변수
+ /* 8.5.10 this값 
+     - 함수가 호출되어 실행되는 시점에 this값이 결정됨.
+     - 여기서 this값은 '함수가 호출되었을 때 그 함수가 속해 있던 객체의 참조'이며 실행문맥의 this바인딩 컴포넌트가 참조하는 객체.
+  */
+  var tom = {
+      name : "test",
+      greeting : function(){
+        console.log("Hello : " + this.name);
+      }
+  };
+  //여기서 this는 tom을 가르킴.    
+  tom.greeting();
+  console.log("=============================");
+  
+    
+  /* 
+  
+   1. 최상위 레벨 코드의 this 
+    - 전역객체를 가르킴. 
+    
+   2. 이벤트처리기 안에 있는 this 
+    - 이벤트가 발생한 요소 객체(이벤트 처리기가 등록된 객체)를 가르킴.
+       
+   3. 생성자 함수 안에 있는 this
+    - 생성자로 생성한 객체를 가르킴.
+
+    4. 생성자의 prototype 메소드안에 있는 this 
+     - 그 생성자로 생성한 객체를 가르킴.
+
+    5. 직접 호출한 함수 안에 있는 this 
+     -  함수를 최상위 레벨의 코드에서 호출하면 함수 안에 있는 this가 전역객체를 가르킴.
+
+    6. apply, call method
+    
+   */
+    
+    //5번 예제.
+    function f(){ console.log(this); }
+    //함수 f를 호출할 때 함수 앞에 아무것도 붙지 않으면 
+    //함수 f가 속한 실행문맥의 디스바인딩 컴포넌트가 전역객체를 가르킴
+    f(); //Windows
+    
+    
+    var a = {};
+    //a의 프로퍼티에 위에 정의한 함수 f의 참조를 대입
+    a.f = f;
+    //a의 f를 호출하면 함수 f가 실행되는 실행 문맥의 디스바인딩 컴포넌트가 객체 a를 가르킨다.
+    a.f(); 
+    console.log("=============================");
+    
+   /* 유효범위 체인 */
+    var a ="A";
+    function f(){
+        var b= "B";
+        function g(){
+            var c ="C";
+            console.log(a+b+c);
+        }
+        g();
+    }
+    f();
+    console.log("=============================");
+    
+    
+</script>
+</head>
+
+<body>   
+</body>
+
+</html>
+
+
+
+

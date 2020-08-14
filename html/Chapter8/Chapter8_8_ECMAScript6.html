@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>인수에추가된기능</title>
+</head>
+<script>
+   /*
+      1. 나머지 매개변수. ( rest parameters )
+        - ...을 이용하며, 그 만큼의 인수를 배열로 받을 수 있다.
+   */
+    
+    function f(a,b, ...args){
+        console.log(a,b,args);
+    }
+    
+    f(1,2,3,4,5,6); // 1,2,[3,4,5,6]
+    
+    //화살표 함수안에서는 유사배열 객체인 arguments를 이용할 수 없지만, rest parameters는 사용가능.
+    var sum = (...args) => { 
+        for(var i=0, s=0; i<args.length; i++) s+=args[i];
+        return s;
+    }
+    var s = sum(1,2,3,4,5); //15
+    console.log(s);
+    
+    
+    /*
+        2. 인수의 기본값  
+          - 함수의 인자에 대입(=) 연산자를 사용해서 기본값을 설정할 수 있음.
+          - 기본값을 설정한 인자에 호응하는 인수를 생략하거나 undefined 를 넘기면 대입 연산자 우변의 값이 기본값이 된다.
+    */
+    
+    function multiply(a,b=1){
+        return a*b;
+    }
+    console.log(multiply(3)); //3
+    console.log(multiply(3,undefined)); //3
+    console.log(multiply(3,2)); //6
+    
+    
+    
+</script>    
+<body>   
+</body>
+</html>
+
+

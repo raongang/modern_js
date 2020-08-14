@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>객체의기초생성자</title>
+</head>
+<body>
+
+<script>
+  
+/** 자바의 클래스 같은 게 없기 때문에 생성자라고 하는 함수로 객체를 생성 */
+  
+    //함수 선언문으로 함수 정의.
+    function Card(suit, rank){
+      this.suit = suit;
+      this.rank = rank;
+      
+      console.log(this.suit);
+      console.log(this.rank);
+      console.log(this);
+  }
+
+ //생성자로 객체생성하기.( new키워드 이용 )
+ var card = new Card('하트','A');
+ var card2 = new Card("클럽", "K");
+ var card3 = new Card("스페이스","2");
+    
+ console.log(card);
+ console.log(card2);
+ console.log(card3);
+    
+//객체리터럴로 변경이후 프로퍼티 추가.    
+var card2={};
+card2.suit="하트";
+card2.rank="a";
+console.log(card2);
+    
+
+//메소드를 가진 객체를 생성하는 생성자.
+//메소드 함수안에 있는 this는 생성될 인스턴스를 가르킴 
+//ex1)
+function Circle(center, radius){
+    this.center = center;
+    this.radius = radius;
+    this.area = function(){
+        return Math.PI * this.radius * this.radius;
+    }
+}
+var p = { x:0, y:0};
+var c = new Circle(p,2.0);
+console.log("넓이 = "  + c.area());
+    
+
+</script>
+</body>
+</html>

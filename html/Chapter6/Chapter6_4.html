@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>HTML5 Canvas1</title>
+</head>
+
+<script>
+    window.onload = function(){
+        //canvas 요소 가져오기
+        var canvas = document.getElementById("mycanvas");
+        //canvas 랜더링 컨텍스트 가져오기
+        var ctx = canvas.getContext("2d");
+        
+        //그리기
+        //좌표(50,60)에 너비가 200이고 높이가 100인 사각형 테두리(단위.픽셀)
+//        ctx.strokeRect(10,10,200,150);
+//        ctx.fillRect(50,40,120,90);
+//        ctx.clearRect(90,65,40,40);   
+//        
+        ctx.beginPath(); //랜더링 컨텍스트패스를 기록. 
+        ctx.moveTo(100,50);
+        ctx.lineTo(100,150);
+        ctx.moveTo(50,100);
+        ctx.lineTo(150,100);
+        ctx.closePath();
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(60,120);
+        ctx.lineTo(110,210);
+        ctx.lineTo(10,210);
+        ctx.fill(); //자동으로 closePath를 함.
+        
+        /* 원호 
+           - (x,y) : 원의 중심좌표
+           - radius : 원의 반지름
+           - startAngle : 원호의 시작 각도(단위는 라디안)
+           - endAngle : 호의 끝 각도(단위는 라디안)
+           - anticlockwise : true면 시계 반대방향, false면 시계방향으로 원호를 그림.
+        */
+        
+        //도 단위로 측정한 각도인 degrees 를 라디안 단위 각도인 radius로 변환하는공식
+        // var radius = degrees * Math.PㄱI / 180;
+        ctx.beginPath();
+        //시계 방향
+        ctx.arc(300,300,80,30 * Math.PI / 180, 120 * Math.PI/180, false);
+        ctx.stroke();
+        //시계반대방향 
+        ctx.beginPath();
+        ctx.arc(300,300,80,30*Math.PI /180, 120 * Math.PI/180,true);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(10,10);
+        ctx.arcTo(250,10,250,160,50);
+        ctx.lineTo(250,160);
+        ctx.stroke(); 
+    }
+</script>
+
+<body> 
+    width, height단위는 픽셀 , defualt는 300*150
+    <canvas id="mycanvas" width="640" height="400" style="border:1px solid #000000;"></canvas>
+</body>
+
+</html>
