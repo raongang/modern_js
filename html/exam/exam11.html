@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>함수의 리턴</title>
+</head>
+<script>
+    
+    /* 리턴 규칙 
+      1. 일반 함수나 메소드는 리턴값을 지정하지 않을 경우, undefined 값이 리턴됨.
+      2. 생성자 함수에서 리턴값을 지정하지 않을 경우 this로 바인딩된 새로 생성된 객체가 리턴된다.
+         만일 명시적으로 다른 객체를 반환시 해당 객체가 반환된다.
+         만일 리턴값이 객체가 아닌 불린,숫자,문자열의 경우 리턴값 무시 this로 바인딩 된 객체 리턴.
+    */
+    
+    //리턴규칙1.
+    //함수 리터럴로 정의
+    var noReturnFunc = function(){
+        console.log('this function has no return statement');
+    };
+    
+    console.log(noReturnFunc);
+    
+    var result = noReturnFunc();
+    console.log(result);
+    
+    
+    console.log("=====================================");
+    
+    //리턴규칙2 
+    console.log("생성자 함수에서 명시적으로 객체를 리턴했을 경우");
+    
+    function Person(name,age,gender){
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    
+        //명시적으로 다른 객체 반환 
+        return {name:'bar',age:20,gender:'woman'};
+    }
+    
+    var foo = new Person('foo',30,'man');
+    console.dir(foo);
+    
+    console.log("생성자 함수에서 명시적으로 기본타입값을 리턴했을 경우");
+    
+    function Person2(name,age,gender){
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        
+        return 100;
+    }
+    
+    var foo2 = new Person2('foo',30,'man');
+    console.dir(foo2);
+    
+    
+    
+
+</script>    
+<body>
+</body>
+</html>

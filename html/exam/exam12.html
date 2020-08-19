@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>프로토타입 체이닝</title>
+</head>
+<script>
+  
+  /*
+     자바스크립트에서 모든 객체는 자신을 생성한 생성자함수의 prototype프로퍼티가 가르키는 프로토타입객체를 
+     자신의 부모객체로 설정하는 __proto__ 로 연결함.
+  */
+    
+    console.log("prototype 프로퍼티와 __proto__ 구분");
+    
+    function Person(name){
+        this.name = name;
+    }
+    var foo = new Person('foo');
+    console.dir(Person);
+    console.dir(foo);
+    
+    console.log('객체 리터럴 방식으로 생성된 객체의 프로토타입 체이닝');
+    
+    var myObject = {
+        name : 'foo',
+        sayName : function(){
+            console.log('my name is ' + this.name);
+        }
+    };
+    
+    console.dir(myObject);
+    myObject.sayName();
+    //객체리터럴은 Object()라는 내장 생성자 함수로생성된다.
+    console.log(myObject.hasOwnProperty('name'));
+//    console.log(myObject.hasOwnProperty('nickName'));
+//    myObject.sayNictName();
+    
+
+    console.log('생성자 함수로 생성된 객체의 프로토타입 체이닝');
+    
+    function Person2(name,age,hobby){
+        this.name = name;
+        this.age = age;
+        this.hobby = hobby;
+    }
+    
+    //객체생성
+    var foo2 = new Person2('foo',30, 'tennis');
+    //프로토타입 체이닝
+    console.dir(foo2);
+    console.log(foo2.hasOwnProperty('name')); 
+    console.dir(Person2.prototype);
+    
+    
+    console.log('기본데이터타입확장');
+    //String 기본타입에 메소드 추가
+    String.prototype.testMethod = function(){
+        console.log('This is String.prototype.testMethod()');
+    }
+    ;
+    var str = 'this is test';
+    str.testMethod();
+    console.dir(String.prototype);
+    
+    console.log("프로토타입도 자바스크립트 객체이다.");
+    
+    function Persons(name){
+        this.name = name;
+    }
+    
+    var foos = new Persons('foos');
+    //foos.sayHello(); 
+    
+    Persons.prototype.sayHello = function(){
+        console.log('hello');
+    }
+    
+    /* 동작
+    생성자로 생성한 객체는 __proto__에 생성자 객체의 prototype객체가 매핑됨.
+    아래의 정의에서 보면 prototype object는 Persons.prototype이된다. 
+    Persons 생성자에 의해 만들어지는 새로운 객체가 foos이며, 이에 대해 물러줄 연결에 대한 속성이 Persons.prototype이 되는거.
+    
+    그리고, foos 객체를 만든 객체의 원형은 Persons.prototype이므로 foos의 __proto__ 는 Persons.prototype에 연결되어 있는거.
+    
+    프로토타입 체이닝은 바로 이 __proto__를 참고하는 것.
+
+         2) Prototype Object 
+       - Prototype Property가 가리키고 있음
+       - prototpye 프로퍼티는 자신을 원형으로 만들어질 새로운 객체들 즉 하위로 물려 줄 연결에 대한 속성이다.
+       
+     3) Prototype Link  [[prototype]]
+       - 자기 자신을 만들어낸 객체의 원형을 의미
+       - 상위에서 물려받은 객체의 프로토타입에 대한 정보
+    */
+    foos.sayHello();
+    
+    
+</script>    
+<body>
+</body>
+</html>

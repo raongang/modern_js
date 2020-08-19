@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>call과 apply메소드를 이용한 this바인딩</title>
+</head>
+<script>
+
+    /* this를 특정객체에 명시적으로 바인딩하는 방법도 제공 
+       부모객체인 Function.prototype 객체의 메소드
+    */
+    
+    function Person(name,age,gender){
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+    
+    var foo ={}; //빈 객체 생성 Object 
+    //this를 foo객체에 biding.
+    Person.apply(foo,['foo',30,'man']);
+    console.dir(foo);
+    
+    var foo2 = new Person('foo',30,'man'); 
+    console.dir(foo2); //foo2객체생성.
+    
+    
+    Person.call(foo,'foo',30,'man');
+    console.dir(foo);
+    
+</script>    
+<body>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>프로토타입 메소드의 this바인딩</title>
+</head>
+<script>
+  console.log('프로토타입 객체의 메소드를 호출할때 this바인딩은 그 메소드를 호출한 객체에 바인딩됨.');   
+    function Person(name){
+        this.name = name;
+    }
+    
+    Person.prototype.getName = function(){
+        return this.name;
+    }
+    
+    var foo = new Person('foo');
+    console.log(foo.getName()); //this는 foo에 바인딩
+    console.dir(foo);
+ 
+    Person.prototype.name = 'person';
+    console.log(Person.prototype.getName()); //person, this는 Person.prototype 객체에 바인딩
+    
+    console.dir(Person);
+    console.log(foo.getName()); //foo
+    
+    
+    
+    console.log("디폴트 프로토타입은 다른 객체로 변경이 가능하다. ")
+    //변경시점 이후 생성된 객체는 변경된 프로토타입 객체로 __proto__연결.
+    //변경시점 이전은 그대로 기존 프로토타입 객체 __proto__로 연결
+    //이 특징 이용 상속구현
+
+    function Persons(name){
+        this.name = name;
+    }
+    
+//    console.dir(Persons)
+    console.dir(Persons.prototype.constructor); //f Persons(name)
+    
+    var foos = new Persons('foos'); 
+    console.log(foos.country); //undefined
+    
+    //default 프로타입 객체를 객체리터럴을 이용해서 변경
+    Persons.prototype = { country : 'korea'};
+//    console.log(Persons.prototype);
+
+    console.log(Persons.prototype.constructor); //f Object
+
+    var bar = new Persons('bar');
+    console.log(foos.country); //undefined 
+    console.log(bar.country); //'korea'
+    console.log(foos.constructor); // f Person()
+    console.log(bar.constructor); // f Object()
+    
+    console.log('객체의 프로퍼티 읽기나 메소드를 실행할 때만 프로토타입 체이닝이 동작.');
+    
+    function Persons3(name){
+        this.name = name;
+    }
+    
+    Persons3.prototype.country = "usa";
+    
+    var foo3 = new Persons3('foo3');
+    var bar3 = new Persons3('bar3');
+    
+    console.log(foo3.country);
+    console.log(bar3.country);
+    
+    foo3.country = 'canada';
+    
+    console.log(foo3.country);
+    console.log(bar3.country);
+    
+    
+    
+    
+</script>    
+<body>
+</body>
+</html>
