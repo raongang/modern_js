@@ -7,7 +7,6 @@
 <script>
 
     /**
-
     javascript의 객체 생성 방법
     - 객체 : 이름과 값을 한쌍(프로퍼티)으로 묶은 집합. 
     
@@ -18,6 +17,7 @@
     
     //1.
     var card = { suit:"heart", rank : "A"};
+    
     
     //2.
     function Card(suit,rank){
@@ -71,9 +71,11 @@
        9.1.2 prototype
         - javascript에서는 함수도 객체(일급객체)이므로 함수객체가 기본적으로 prototype,caller,length,name 프로퍼티를 가지고 있다.
         - 함수는 Function생성자의 prototype 객체(Function.prototype ) 의 프로퍼티(apply(),bind(),call()..)를 상속받아서 사용한다. (__proto__)
+        - Function.prototype의 상위 프로퍼티는 Object.property.
     */
     
     //함수의 prototype 프로퍼티가 가르키는 객체를 그 함수의 프로토타입 객체라고 하고 기본적으로는 빈 객체를 가르킨다.
+    
     function F(){};
 
     console.log("=====================================");
@@ -85,8 +87,12 @@
     var obj = new F();
     console.log(obj.prop); //prototype value
     
-    // 1.생성자안에서 메소드를 정의하는 방식의 문제점 해결,
     console.log("=====================================");
+    obj.prop='instance value';
+    console.log(obj.prop);
+    console.log(F.prototype.prop);
+    
+    console.log("1.생성자안에서 메소드를 정의하는 방식의 문제점 해결");
     
     //Circle2생성자
     function Circle2(center, radius){
@@ -102,8 +108,7 @@
     var c5 = new Circle2({x:0,y:1},3.0);
     var c6 = new Circle2({x:1,y:0},1.0);
     
-    console.log("=====================================");
-    console.log("넓이 : " + c4.area());
+    console.log("area : " + c4.area());
 </script>    
 <body>
 </body>

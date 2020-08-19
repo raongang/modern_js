@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>prototype extend</title>
+</head>
+<script>
+
+    //prototype chain - javascript의 상속
+    //__proto__ : ECMAScript6부터 읽을수 있다.
+    var obj = {};
+    console.log(obj.__proto__);
+    
+    console.log('부모객체 프로퍼티 이용');
+    
+    var objA = {
+        name : "Tom",
+        sayHello : function(){ console.log("Hello " + this.name); }
+    };
+    
+    console.dir(objA);
+    
+    var objB = {
+        name : "Huck"
+    };
+    
+    console.dir(objB.__proto__);
+    objB.__proto__ = objA;
+    
+    var objC ={};
+    objC.__proto__ = objB;
+    
+    objC.sayHello(); //Hello Huck
+    
+    console.log("=============================================");
+    console.log("객체의프로토타입 가져오기");
+    function F(){}
+    var objF = new F();
+    console.log(Object.getPrototypeOf(objF));
+    
+    console.log("9.2.5 프로토타입 객체의 프로퍼티");
+    
+    function F(){};
+    console.log(F.prototype.constructor); //f F(){}
+    
+    
+    
+    
+    
+    
+</script>    
+<body>
+</body>
+</html>

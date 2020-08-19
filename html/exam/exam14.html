@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>prototype의 고찰</title>
+</head>
+<script>
+  //리터럴 객체는 생성자 함수가 Object.prototype
+  var foo = { name : "foo"};
+  Object.prototype.a = 'hello world';
+  //foo.prototype.a = 'a';  <- 이건 error
+  console.log(foo.a);
+    
+  function A(){}
+  var a = new A();
+  console.log(a);
+    
+  
+   console.log("prototype사용예제1");
+
+    //#예제 1.
+    var A = function () {
+        this.x = function () {
+             console.log('hello');
+        };
+    };
+    A.x=function() {
+        console.log('world');
+    };
+    
+    console.dir(A);
+    var B = new A();
+    var C = new A();
+    B.x();
+    C.x();
+
+
+    //#예제 2.
+    var A = function () { };
+    A.x=function() {
+        console.log('hello');
+    };
+    A.prototype.x = function () {
+         console.log('world');
+    };
+    var B = new A();
+    var C = new A();
+    B.x();
+
+    C.x();
+
+ 
+</script>    
+<body>
+</body>
+</html>
