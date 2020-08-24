@@ -5,7 +5,6 @@
     <title>prototype extend</title>
 </head>
 <script>
-
     //prototype chain - javascript의 상속
     //__proto__ : ECMAScript6부터 읽을수 있다.
     var obj = {};
@@ -36,16 +35,63 @@
     console.log("객체의프로토타입 가져오기");
     function F(){}
     var objF = new F();
+    
     console.log(Object.getPrototypeOf(objF));
     
+    console.log("=============================================");
+    console.dir(objF);
+    
+    console.log("=============================================");
     console.log("9.2.5 프로토타입 객체의 프로퍼티");
     
     function F(){};
-    console.log(F.prototype.constructor); //f F(){}
+    console.log(F.prototype.__proto__); // -> Object{} : Object.prototype
     
     
+    console.log("프로토타입 객체의 교체 및 constructor 프로퍼티");
     
+    function Circle(center,radius){
+        this.center = center;
+        this.radius = radius;
+    }
     
+    Circle.prototype ={
+        constructor : Circle, //생성자를 constructor에 대입
+        area : function(){ return Math*PI * this.radius * this.radius;}
+    };
+    
+    var c = new Circle({x:0,y:0},2.0);
+    console.dir(c.constructor); // -> Function Circle
+    console.dir(c);
+    console.log(c instanceof Circle); //-> true
+    
+    console.log("인스턴스 생성후에 생성자의 프로토타입을 수정하거나 교체한 경우는 인스턴스의 프로토 타입이 바뀌지 않는다.");
+    
+
+    function Sum(num1,num2){
+        this.num1 = num1;
+        this.num2 = num2;
+    }
+    var temp = new Sum(1,2);
+    
+    Sum.prototype = {
+        constructor : Sum,
+        sumNum : function() { this.num1 + this.num2; }
+    };
+    //temp.sumNum(); //-> temp.sumNum is not a function
+    
+    console.log("생성자가 기존에 가지고 있던 프로토타입 객체에 프로퍼티를 추가하는 경우에는 생성자와 인스턴스 사이의 연결고리가 끊기지 않는다.")
+
+    console.log("생성자에서 정의한 프로퍼티를 인스턴스에서 사용가능.");
+    
+    function Mul(param1,param2){
+        this.param1 = param1;
+        this.param2 = param2;
+    }
+    
+    var temp2 = new Mul(3,4);
+    Mul.prototype.mulNum = function() { console.log("this multiply value is : " + this.param1 * this.param2); };
+    temp2.mulNum();
     
     
 </script>    
