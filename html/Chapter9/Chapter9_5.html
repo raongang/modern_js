@@ -30,7 +30,6 @@
     */
     
     var tom = { name : "tom" };
-    
     //parameter : 객체의 참조, 프로퍼티이름
     console.dir(Object.getOwnPropertyDescriptor(tom,"name"));
     console.dir(Object.getOwnPropertyDescriptor({},"name")); //-> undefined
@@ -53,16 +52,29 @@
     console.log(Object.getOwnPropertyDescriptor(obj,"name"));
     console.dir(obj);
     
-    /*
-       프로퍼티의 쓰기속성 변경
-    */
-    
+    console.log("프로퍼티의 쓰기속성 변경");
     var person = { name : "Toby" };
     Object.defineProperty(person,"name",{ writable : false });
     console.log(Object.getOwnPropertyDescriptor(person,"name"));
     
     person.name="Huck";
     console.log(person.name);//-> writable : false라서 Huck이 아닌 Toby로 표시됨.
+    
+    console.log("프로퍼티의 열거속성 변경");
+    
+    var persons = {
+        name : "Tobi",
+        age : 17,
+        sayHello : function(){ console.log("Hi, " + this.name); }
+    };
+    
+    Object.defineProperty(persons,"sayHello", {enumerable:false });
+    for(var p in persons) console.log(p); //sayHello가 열거되지 않음.
+    
+    console.log("프로퍼티 재정의 기능속성 변경");
+    
+    
+    
     
     
 </script>    
