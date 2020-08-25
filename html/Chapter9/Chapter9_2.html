@@ -6,6 +6,74 @@
 </head>
 <script>
    console.log("프로토타입의 확인");
+   // 특정프로토타입 객체가 그 객체의 프로토타입에 포함되어 있는지 확인하는 방법 : instanceof연산자, isProtoTypeOf 메소드
+
+    // 객체 instanceof 생성자 
+    // 객체 instanceof 생성자
+    function F(){};
+    var obj = new F();
+    
+    console.log(obj instanceof F);  //true
+    console.log(obj instanceof Object);//true
+    console.log(obj instanceof Date); //false
+    
+    // isPrototypeOf 메소드
+    // 프로토타입객체.isPrototypeOf(객체)
+    
+    function G(){};
+    
+    console.log(F.prototype.isPrototypeOf(obj)); //true
+    console.log(Object.prototype.isPrototypeOf(obj)); //true.
+    console.log(Date.prototype.isPrototypeOf(obj)) //flase
+    
+    //9.2.7 Object.prototype 
+    // var obj = new Object(); 와 var obj={} , var obj=Object() 는 같음.
+    var day = new Date();
+    console.log("day -> " + day);
+    console.log(day.getMonth());
+    console.log(day.hasOwnProperty("length")); //->false
+    
+    console.log("Object.prototype의 프로토타입은 null");
+    console.dir(Object.prototype); 
+    console.log(Object.prototype.__proto__); //null
+    
+    console.log("9.2.8 Object.create로 객체 생성하는 방법.  ( ECMAScript5부터 추가 )");
+    /* Object.create로 명시적으로 프로토타입 지정해서 객체 생성가능. 가장 쉽게 상속 표현 가능
+         첫번째 인수 : 생성할 객체의 프로토타입 지정
+         두번째 인수 : 생성할 객체의 프로퍼티 지정
+    */
+    
+    var person1 = {
+        name : "Tom",
+        sayHello : function() { console.log("Hello, " + this.name);}
+    };
+    
+    var person2 = Object.create(person1); // -> person2 의 __proto__는 person1을 가르킴
+    person2.name = "hulk";
+    person2.sayHello();
+    
+    var person3 = person1;
+    
+    console.dir(person1);
+    console.dir(person2);
+    console.dir(person3);
+    
+    console.log("프로토타입이 없는 객체 생성");
+    var blankObject = Object.create(null);
+    console.dir(blankObject); //-> No properties 
+    
+    console.log("빈 객체 생성");
+    var blankObject2 = {};
+    var blankObject3 = Object.create(Object.prototype);
+    
+    console.dir(blankObject2);
+    console.dir(blankObject3);
+    
+    
+    
+    
+    
+    
     
 </script>    
 <body>

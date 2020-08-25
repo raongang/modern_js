@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>9.3 접근자 프로퍼티(getter/setter) </title>    
+</head>
+<script>
+
+    var person = {
+        _name : "Tom", //데이터 프로퍼티
+        
+        //접근자 프로퍼티 ( get, set이 keyword )
+        get name(){
+            return this._name;
+        },
+        
+        set name(value){
+            var str = value.charAt(0).toUpperCase() + value.substring(1);
+            this._name = str;
+        }
+    };
+      
+    console.dir(person);
+    console.log(person.name); //Tom
+    person.name="huck";
+    console.log(person.name); //Huck
+    
+    //접근자프로퍼티 삭제
+    console.log("접근프로퍼티 삭제전!");
+    console.dir(person);
+    delete person.name;
+    console.log("접근프로퍼티 삭제후!");
+    console.dir(person);
+    console.log("데이터 프로퍼티 직접 변경!");
+    
+    person._name="Hell";
+    console.log(person._name);
+
+    //Object.defineProperty, Object.defineProperties ??
+    
+    console.log("데카르트 좌표계");
+    var point = {
+        
+        x : 1.0,
+        y : 1.0,
+        
+        get r(){
+            return Math.sqrt(this.x * this.x + this.y * this.y);
+        },
+        get theta(){
+          return Math.atan2(this.y, this.x)  
+        },
+        set polarCoordinate(pc){
+            this.x = pc.r*Math.cos(pc.theta);
+            this.y = pc.r*Math.sin(pc.theta);
+        }
+        
+    };
+    
+    console.log(point.r);
+    console.log(point.theta);
+    
+    point.polarCoordinate = {r:2, theta : Math.PI/ 4};
+    console.log(point);
+    
+    
+    
+</script>    
+<body>
+</body>
+</html>

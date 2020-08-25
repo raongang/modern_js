@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>9.4 프로퍼티의 속성</title>    
+</head>
+<script>
+    
+    /* 객체 생성 방법 ECMAScript5부터 추가.
+    var card = Object.crate(Object.prototype, {
+        suit: { 
+            value:"heart",
+            writable : true, //프로퍼티 쓰기가능 여부.
+            enumerable : true, //프로퍼티 열거 가능 여부.
+            configurable : true //프로퍼티의 내부속성 수정 가능 여부 ( true이면 delete 연산자로 프로퍼티 제거 가능)
+        },
+        rank : {
+            writable : true,
+            enumerable : true,
+            cofnigurable : true
+        }
+    });
+    */
+    
+    console.log("9.4.2 프로퍼티 디스크립터와 프로퍼티를 읽고 쓰는 메소드");
+    
+    /* 
+        프로퍼티 디스크립터 : 프로퍼티 속성값을 뜻하는 객체. 
+        Object.getOwnPropertyDescriptor : 프로퍼티 디스크립트를 가져옴.
+    */
+    
+    var tom = { name : "tom" };
+    
+    //parameter : 객체의 참조, 프로퍼티이름
+    console.dir(Object.getOwnPropertyDescriptor(tom,"name"));
+    console.dir(Object.getOwnPropertyDescriptor({},"name")); //-> undefined
+    console.dir(Object.getOwnPropertyDescriptor(tom,"toString")); //-> undefined
+    
+    /* 객체의 프로퍼티 설정하기 : Object.defineProperty  
+       객체의 프로퍼티에 프로퍼티 디스크립터를 설정.
+    */
+    
+    var obj = {};
+    console.dir(obj);
+    //parameter : 객체의참조, 프로퍼티이름을 뜻하는 문자열, 프로퍼티 디스크립터의 참조.
+    Object.defineProperty(obj,"name", {
+                          value : "Test",
+                          writable:true,
+                          enumerable: false,
+                          configurable:true
+    });
+    
+    console.log(Object.getOwnPropertyDescriptor(obj,"name"));
+    console.dir(obj);
+    
+    /*
+       프로퍼티의 쓰기속성 변경
+    */
+    
+    var person = { name : "Toby" };
+    Object.defineProperty(person,"name",{ writable : false });
+    console.log(Object.getOwnPropertyDescriptor(person,"name"));
+    
+    person.name="Huck";
+    console.log(person.name);//-> writable : false라서 Huck이 아닌 Toby로 표시됨.
+    
+    
+</script>    
+<body>
+</body>
+</html>
