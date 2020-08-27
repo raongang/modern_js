@@ -23,7 +23,6 @@
     */
     
     console.log("9.4.2 프로퍼티 디스크립터와 프로퍼티를 읽고 쓰는 메소드");
-    
     /* 
         프로퍼티 디스크립터 : 프로퍼티 속성값을 뜻하는 객체. 
         Object.getOwnPropertyDescriptor : 프로퍼티 디스크립트를 가져옴.
@@ -33,7 +32,7 @@
     //parameter : 객체의 참조, 프로퍼티이름
     console.dir(Object.getOwnPropertyDescriptor(tom,"name"));
     console.dir(Object.getOwnPropertyDescriptor({},"name")); //-> undefined
-    console.dir(Object.getOwnPropertyDescriptor(tom,"toString")); //-> undefined
+    console.dir(Object.getOwnPropertyDescriptor(tom,"toString")); //-> 상속받은 프로퍼티 지정시 undefined
     
     /* 객체의 프로퍼티 설정하기 : Object.defineProperty  
        객체의 프로퍼티에 프로퍼티 디스크립터를 설정.
@@ -73,9 +72,51 @@
     
     console.log("프로퍼티 재정의 기능속성 변경");
     
+    var personss = {
+        name : "Tom2", 
+        age : 17,
+        sex : "남"
+    };
     
+    Object.defineProperty(personss,"age",{configurable:false}); //false로 하면 다시 true로 설정불가
+    console.log(personss.age); //17
     
+    delete personss.age;
+    console.log(personss.age);//17    
     
+    //Object.defineProperty(personss,"age",{enumerable:false}); // 내부속성 수정 불가.
+    //Object.defineProperty(personss,"age",{configurable:true}); //error
+    Object.defineProperty(personss,"age",{writable:false});
+        
+    console.log("빈 객체 생성");
+    var blankObject2 = {};
+    var blankObject3 = Object.create(Object.prototype);
+    
+    console.log("객체의 프로퍼티 속성 여러개를 한꺼번에 설정하기");
+    //param : 객체의참조
+    
+    var person2 = Object.defineProperties({}, {
+        _name : {
+            value : "Tom",
+            writable : true,
+            enumerable : true,
+            configurable : true
+        },
+    
+        name : {
+            get : function() { return this._name; } ,
+            set : function(value) {
+                var str = value.chatAt(0).toUpperCase + value.subString(1);
+                this._name = str;
+            },
+            enumerable : true,
+            configurable : true
+        } 
+    });
+    
+    console.log(Object.getOwnPropertyDescriptor(person2,"name"));
+    console.dir(person2); //-> __proto__가 Object..
+
     
 </script>    
 <body>

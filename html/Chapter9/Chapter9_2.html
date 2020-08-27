@@ -38,10 +38,12 @@
     console.log(Object.prototype.__proto__); //null
     
     console.log("9.2.8 Object.create로 객체 생성하는 방법.  ( ECMAScript5부터 추가 )");
+   
     /* Object.create로 명시적으로 프로토타입 지정해서 객체 생성가능. 가장 쉽게 상속 표현 가능
          첫번째 인수 : 생성할 객체의 프로토타입 지정
          두번째 인수 : 생성할 객체의 프로퍼티 지정
     */
+    
     
     var person1 = {
         name : "Tom",
@@ -49,8 +51,8 @@
     };
     
     var person2 = Object.create(person1); // -> person2 의 __proto__는 person1을 가르킴
-    person2.name = "hulk";
-    person2.sayHello();
+//    person2.name = "hulk";
+//    person2.sayHello();
     
     var person3 = person1;
     
@@ -69,12 +71,7 @@
     console.dir(blankObject2);
     console.dir(blankObject3);
     
-    
-    
-    
-    
-    
-    
+  
 </script>    
 <body>
 </body>

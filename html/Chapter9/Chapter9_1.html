@@ -47,7 +47,6 @@
     function F(){};
     console.log(F.prototype.__proto__); // -> Object{} : Object.prototype
     
-    
     console.log("프로토타입 객체의 교체 및 constructor 프로퍼티");
     
     function Circle(center,radius){
@@ -67,7 +66,6 @@
     
     console.log("인스턴스 생성후에 생성자의 프로토타입을 수정하거나 교체한 경우는 인스턴스의 프로토 타입이 바뀌지 않는다.");
     
-
     function Sum(num1,num2){
         this.num1 = num1;
         this.num2 = num2;

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>    
+</head>
+<script>
+    
+    console.log("Object.create의 첫번째 인수");
+    var person1 = {
+        name : "Tom",
+        sayHello : function() { console.log("Hello, " + this.name);}
+    };
+    
+    var person2 = Object.create(person1); // -> person2 의 __proto__는 person1을 가르킴
+    
+    console.dir(person1);
+    console.dir(person2);
+//  person2.name = "hulk";
+//  person2.sayHello();
+    
+    /* 두번째 인수예제 
+       parameter : 객체의 참조, Object.defineProperties 메소드의 두번째 인수와 같이 프로퍼티 디스크립터를 넘김.
+    */ 
+
+    console.log("Object.create의 두번째 인수");
+    var group = {
+        groupName : "Tennis cricle",
+        sayGroupName : function() { console.log("belong to " + this.groupName); }
+    };
+    
+    console.log("group!");
+    console.dir(group);
+    
+    var person = Object.create(group, { // __proto__ 가 group 을 사용함.
+       name : {
+           value : "Tom",
+           writable : true,
+           enumerable : true,
+           configurable : true
+       } ,
+        
+        age : {
+            value : 19,
+           writable : true,
+           enumerable : true,
+           configurable : true
+        },
+        
+        sayName : {
+            value : function(){ console.log("I'm " + this.name); },
+           writable : true,
+           enumerable : false,
+           configurable : true
+        }
+    });
+    
+    console.log("person!");
+    console.dir(person);
+    
+    console.log(person.groupName); //Tennis circle
+    person.sayGroupName(); // belong to Tennis cricle
+    person.sayName(); // I'm Tom
+    
+    
+    
+    
+</script>    
+<body>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>    
+</head>
+<script>
+
+    console.log("9.5 프로퍼티가 있는지 확인하기.");
+    console.log("9.5.1 in 연산자");
+    console.log("in 연산자는 객체안에 지명한 프로퍼티가 있는지 검색하며, 그 검색대상은 그 객체가 소유한 프로퍼티와 상속받은 프로퍼티 모두를 포함함.");
+    
+    var person = { name : "Tom" };
+    console.log("name" in person); //true
+    console.log("age" in person); //false (프로퍼티없음);
+    console.log("toString" in person); // true (상속받아서)
+
+    console.log("hasOwnProperty 메소드");
+    console.log(person.hasOwnProperty("name")); //true
+    console.log(person.hasOwnProperty("toString")); //false 상속한 객체에 있기 때문에..
+    
+   console.log("=========================================");
+    console.log("9.5.3 propertyIsEnumerable 메소드");
+    
+    //propertyIsEnumerable 메소드 : 지정한 프로퍼티가 그 객체가 소유한 프로퍼티이며, 열거할 수 있을때 true. 상속받은 프로퍼티는 대상이 되지 않는다.
+    
+    var person1 = { name : "Tom" , age : 17 };
+    var person2 = Object.create(person1);
+    
+    person2.name="hulk";
+    
+    console.log(person2.propertyIsEnumerable("name")); //true
+    console.log(person2.propertyIsEnumerable("age")); //false 상속한거라..
+    console.log(Object.propertyIsEnumerable("toString")); //false
+    
+    
+    console.log("=========================================");
+    
+    console.log("9.6 프로퍼티의 열거");
+    console.log("9.6.1 for/in 문");
+    
+    //객체와 객체의 프로토타입 체인에서 열거할 수 있는 프로퍼티를 찾아서 꺼내기.
+    var person3 = { name: "Tom", age : 17};
+    var person4 = Object.create(person3);
+    person3.name = "Huck";
+    
+    // ※ Object.prototype의 프로퍼티는 열거 할 수 없으므로 for/in문으로 찾을 수 없다
+    for(var p in person4) console.log(p);
+    
+    /* ※ 자바스크립트의 배열은 Array타입의 객체.
+         Array 객체의 각 요소는 프로퍼티 -> Index는 프로퍼티 이름, 요소값은 프로퍼티 값.
+         Array.prototype와 Object.prototype은 열거 할 수 없다.
+        
+        ※ 객체에서 새로운 프로퍼티를 추가시 -> 기본 속성은 쓰기가능/열거가능/재정의가능
+          내장 생성자가 가지고 있는 프로토타입 객체의 프로퍼티 대부분 -> 쓰기가능/열거불가능/재정의가능.
+    */
+    var a = [0,2,4,6,8];
+    a.name = "evens";
+    for(var i in a) console.log(i); // 0,1,2,3,4,name
+
+    console.log("=========================================");
+    console.log("9.6.2 Object.keys 메소드");
+   
+    /*
+        Object.keys 메소드 : 지정한 객체가 소유한 프로퍼티중에서 열거 할 수 있는 프로퍼티 이름만 배열로 만들어서 반환한다. ( 상속 프로퍼티 포함되지 않는다. )
+        
+        defineProperty - 객체의 프로퍼티 설정
+        프로퍼티 디스크립터 - 프로퍼티 속성값을 뜻하는 객체.
+    */
+    
+    var group = { groupName : "Tennis Circle" };
+   
+    var person5 = Object.create(group);
+    
+    person5.name = "soon";
+    person5.age=20;
+    person5.sayHello = function(){ console.log("sub sub : " + this.name)};
+    
+        
+    Object.defineProperty(person5,"sayHello",{enumerable:true}); // ["name","age","sayHello"]
+    console.log(Object.keys(person5));
+    
+    Object.defineProperty(person5,"sayHello",{enumerable:false}); //name,age
+    
+    console.log(Object.keys(person5));
+    
+    var p = Object.keys(person5);
+    for(var i=0; i<p.length; i++){
+        console.log(person5[p[i]]); //값출력
+    }
+    
+    
+    console.log("=========================================");
+    console.log("9.6.3 Object.getOwnPropertyNames 메소드");
+
+    
+    
+</script>    
+
+<body>
+</body>
+</html>
