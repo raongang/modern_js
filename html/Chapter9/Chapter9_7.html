@@ -82,11 +82,10 @@
     
     Object.defineProperty(person5,"sayHello",{enumerable:false}); //name,age
     
-    console.log(Object.keys(person5));
-    
     var p = Object.keys(person5);
     for(var i=0; i<p.length; i++){
-        console.log(person5[p[i]]); //값출력
+        console.log(person5[p[i]]); //값출력 -> 프로퍼티이름으로 만들기 때문에 값 출력시 p[i]만 하면 프로퍼티명만 나옴.
+        
     }
     
     
