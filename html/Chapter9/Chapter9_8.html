@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>    
+</head>
+<script>
+    
+    /** 9.7 객체 잠그기 
+         객체의 확장가능 속성, 재정의 기능속성, 쓰기 가능 속성 설정을 ECMAScript5부터는 한꺼번에 3단계로 설정하여 잠금이 가능해짐.
+         
+         9.7.1 확장 가능 속성
+          - 객체에 새로운 프로퍼티를 추가할 수 있는지를 결정.
+    */    
+        
+    //9.7.2 확장 방지 : Object.preventExtensions 메소드
+    var person = { name : "Tom" };
+    Object.preventExtensions(person);
+    person.age = 17; //프로퍼티가 추가되지 않음
+    console.log("age" in person); //->false
+    
+    //확장여부확인
+    console.log("확장여부 : " + Object.isExtensible(person));
+    console.log("================================");
+  
+    
+</script>    
+
+<body>
+</body>
+</html>

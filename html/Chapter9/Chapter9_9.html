@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>    
+</head>
+<script>
+    
+    /* 9.7.3 밀봉메소드 : Object.seal 메소드
+       밀봉 - 객체에 프로퍼티를 추가하는 것을 금지하고, 기존의 모든 프로퍼티를 재정의할 수 없게 한다.
+            - 프로퍼티의 추가,수정, 삭제를 할 수 없고 값의 읽기와 쓰기만 가능
+    */
+    var person = { name : "Tom"};
+    
+    Object.seal(person);
+    person.age = 17;
+    
+    delete person.name;
+    
+    //Object.defineProperty(person,"name",{enumerable:false});
+    //in 연산자 - 상속까지 체크
+    //console.log("name" in person2); //true
+    //console.log("age" in person2); //false
+    
+    //console.log(Object.getOwnPropertyDescriptor(person,"name"));
+    
+    console.log(Object.isSealed(person)); //->true
+    
+    
+    console.log("===========================================================");
+    /*  9.7.4 동결 : Object.freeze 메소드 
+        - 객체에 프로퍼티를 추가하는 것을 금지하고, 기존의 모든 프로퍼티를 재정의 할 수 없게 만들며 데이터 프로퍼티를 쓸수 없게 만듬.
+        - 객체의 프로퍼티만 읽기 가능
+        - setter, getter는 사용가능.
+    */
+    
+    var person2 = { name : "Jerry" };
+    Object.freeze(person2);
+
+    console.log(Object.getOwnPropertyDescriptor(person2,"name"));
+    console.log(Object.isFrozen(person2));
+    
+</script>    
+
+<body>
+</body>
+</html>

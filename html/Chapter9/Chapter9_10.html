@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>    
+</head>
+<script>
+    /* 9.8 Mixin 
+        - 객체의 코드를 상속과는 다른 방식으로 재사용하는 방법을 제시.
+        - 특정 객체에 다른 객체가 가지고 있는 프로퍼티를 넣어 '뒤섞는' 기법.
+        - 객체의 프로퍼티를 복사하는 함수를 만들어 사용.
+        - 문자열을 키로 가지는 프로퍼티만 복사하며, 심볼을 키로 가지는 프로퍼티는 복사하지 않음.
+        - ECMAScript6 부터는 Object.assign메소드로 mixin과 같은 작업 가능.
+    */
+
+    //9.3 exmaple property copy - 얕은 복사.
+    function mixin(target, source){
+        for(var property in source){
+            if(source.hasOwnProperty(property)){
+                target[property] = source[property];
+            }
+        }
+        return target;
+    }
+    
+    var obj = { a:1, b:2};
+    var obj2 = {b:3, c:4};
+    var obj = mixin(obj,obj2);
+    console.log(obj); //-> Object {a:1, b:3, c:4}
+    
+    
+    console.log("==================================");
+    //9.8.2 좀더 완벽한 Mixin 함수
+    //9.3의 문제점 -  
+    var person1 = {
+        _name : "Tom", //데/데어트퍼ㅗ리핕
+        get name(){ //접근자 프로퍼티
+            return this._name;
+        }
+    };
+    
+    var person2 = {};
+    
+    mixin(person2,pseron1);
+    
+    console.dir(person2);
+    console.dir(person1);
+    
+    
+    
+
+</script>    
+
+<body>
+</body>
+</html>
