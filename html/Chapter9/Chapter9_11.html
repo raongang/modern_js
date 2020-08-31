@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>JSON</title>    
+</head>
+<script>
+    console.log("json은 java script 객체를 문자열로 표현하는 데이터 포맷.");
+    
+    var o = { name:"Tom", age : 17, marriage : false, data : [2,5,null] };
+    
+    console.log("JSON.stringify : java script object -> JSON 문자열로 변환");
+    var s = JSON.stringify(o);
+    console.log(s);
+    
+    console.log("JSON.parse : 문자열 -> jaca script object로 변환.");
+    var p = JSON.parse(s);
+    console.log(p);
+    
+    console.log("JSON을 활용한 객체의 깊은 복사");
+    
+    var point = { x:0, y:0 };
+    var circle = { center : point, radius:2};
+    var copy = JSON.parse(JSON.stringify(circle));
+    
+    
+    
+</script>
+<body>
+</body>
+</html>

@@ -11,10 +11,11 @@
         - 객체의 프로퍼티를 복사하는 함수를 만들어 사용.
         - 문자열을 키로 가지는 프로퍼티만 복사하며, 심볼을 키로 가지는 프로퍼티는 복사하지 않음.
         - ECMAScript6 부터는 Object.assign메소드로 mixin과 같은 작업 가능.
+
     */
 
     //9.3 exmaple property copy - 얕은 복사.
-    function mixin(target, source){
+    function beforeMixin(target, source){
         for(var property in source){
             if(source.hasOwnProperty(property)){
                 target[property] = source[property];
@@ -25,15 +26,14 @@
     
     var obj = { a:1, b:2};
     var obj2 = {b:3, c:4};
-    var obj = mixin(obj,obj2);
-    console.log(obj); //-> Object {a:1, b:3, c:4}
-    
+    var obj = beforeMixin(obj,obj2);
+    console.log(obj); //-> Object {a:1, b:3, c:4} 덮어쓰기 됨.
     
     console.log("==================================");
     //9.8.2 좀더 완벽한 Mixin 함수
-    //9.3의 문제점 -  
+    //9.3의 문제점 - 접근자 프로퍼티가 있을 경우 접근자 프로퍼티도 데이터프로퍼티로 바꾸어서 복사해버림.
     var person1 = {
-        _name : "Tom", //데/데어트퍼ㅗ리핕
+        _name : "Tom", 
         get name(){ //접근자 프로퍼티
             return this._name;
         }
@@ -41,12 +41,44 @@
     
     var person2 = {};
     
-    mixin(person2,pseron1);
+    beforeMixin(person2,person1);
     
+    console.log("person2");
     console.dir(person2);
+    console.log("person1");
     console.dir(person1);
     
+    person2.name="Huck";
+    console.log("person2.name >> " + person2.name);
+    console.log(person2); // -> Object {_name : "Tom", name : "Huck" }
     
+    console.log("9.4 좀더 완벽한 Mixin 함수")
+    
+    /*
+        Object.keys 메소드 : 지정한 객체가 소유한 프로퍼티중에서 열거 할 수 있는 프로퍼티 이름만 배열로 만들어서 반환한다. ( 상속 프로퍼티 포함되지 않는다. )        
+        defineProperty - 객체의 프로퍼티 설정
+        프로퍼티 디스크립터 - 프로퍼티 속성값을 뜻하는 객체.
+    */
+    function maxin(target,source){
+        var keys = Object.keys(source); 
+        for(var i=0; i < keys.length; i++){
+            var descriptor = Object.getOwnPropertyDescriptor(source,keys[i]);
+            Object.defineProperty(target,keys[i],descriptor);
+        }
+        return target;                               
+    }
+    
+    var person3 = {
+        _name : "Toby",
+        get name() { return this._name; }
+    };
+    
+    var person4 = {};
+    maxin(person4,person3);
+    
+    person4.name="Hulk";
+    console.log(person3.name); //->Toby
+    console.log(person3);
     
 
 </script>    

@@ -10,11 +10,11 @@
     //배열 리터럴 생성
     var a = [2,,4];
     console.log(a);
-    console.log(a);
-    
+
     //변수의 요소에는 변수와 마찬가지로 모든 타입의 값이 올수 있다.
     var various = [3.14,"pi",true,{x:1,y:2},[2,4,6,8]];
-    console.log(various); console.log("===================================================================");
+    console.log(various); 
+    console.log("===================================================================");
     var a = ["A","B","C","D"];
     a.length=2;
     console.log(a); //A,B
@@ -22,6 +22,7 @@
     
     a.length=10;
     console.log(a); 
+    console.log("===================================================================");
 
     //array생성자로 생성
     var evens = new Array(2,4,6,8);
@@ -35,12 +36,12 @@
     console.log(x);
     
     //var x = new Array(-3); //error
-    
     console.log("===================================================================");
     console.log("테스트");
+
     //배열은 객체
     var a = ["A1","B1","C1","D1"];
-    console.log(a["2"]);
+    console.log(a["2"]); //객체 리터럴 방식처럼 요소를 가져올 수 있음.
     console.log(a[2]);
     console.log(a[4]); //undefined 
     console.log("===================================================================");
@@ -59,14 +60,14 @@
     
     //delete - 특정배열 요소를 삭제.
     delete a[1];
-    console.log("delete : " + a);
-    console.log("after delete then length : " + a.length);
+    console.log("delete : " + a); //-> A3,,C3,D3
+    console.log("after delete then length : " + a.length); //4
     
     /* 희소 배열 */
     var a = ["A5","B5","C5"];
     a[4] = "E5";
     console.log("희소배열 : " + a);
-    console.log(a.length);
+    console.log("a.length >> " + a.length);
     
     //배열요소가 있는지 확인하기
     for(var i in a) console.log(i); //0,1,2,4

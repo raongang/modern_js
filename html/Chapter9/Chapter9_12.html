@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>    
+</head>
+<script>
+
+    console.log("ECMAScript6부터 추가된 객체의 기능");    
+    console.log("9.10.1 프로퍼티 이름으로 심볼 사용하기");
+    
+    /*
+        ECMAScript6 이전에는 객체의 프로퍼티 이름으로 식별자나 문자열만 사용가능 했었음.
+        ECMAScript6 부터는 심벌을 프로퍼티 이름으로 사용가능.
+        
+        Symbol
+          ㄴ 유일무이한 값 
+          ㄴ 함수 안에서 심볼을 생성하여 그것을 속성 이름으로 사용하고 그 프로퍼티에 값을 할당시 함수 바깥에서 값을 읽거나 쓸 수 없다.
+          ㄴ 다음과 같은 방법으로 심볼 프로퍼티 찾기 불가능 : for/in 반복문,  Object.keys , Object.getOwnPropertyNames 
+          ㄴ Object.getOwnPropertySymbols 로 가져오기 가능.
+    */
+    
+    var obj ={};
+    var s = Symbol("heart");
+    obj[s] = 3; //심볼을 프로퍼티 이름으로 사용한다.
+    console.log(obj); //-> Object { Symbol(heart) : 3}
+    
+    //계산된 프로퍼티 이름(Computed Property name)
+    var obj = { [Symbol("heart")] : "A" };
+    
+    console.log("내장 생성자 prototype의 안전한 확장");
+    
+    /* Array, Date등 기본생성자의 prototype에 메소드를 추가하게 되면 다른 자바스크립트 라이브러리나 추후 추가될 메소드 이름과 겹칠수 있기 때문에 비권장
+      단, Symbols를 이용하면 유일무이한 값이므로 이름이 겹치는 것을 피할 수 있음.
+      
+    */
+    
+    //9-5. Fisher-Yates 알고리즘이 적용된 셔플 함수를 Array.prototype에 추가하기
+    //Symbol.for() - 전역 레지스트리에 저장, 문자열과 연결된 심벌생성
+    Array.prototype[Symbol.for("shuffle")] = function(){
+        var a = this;
+        var m = a.length,t,i;
+        
+        while(m){ //m이 0이 되면 멈춘다.
+            i = Math.floor(Math.random()*m--); //m미만의 인덱스 i를 무작위로 골라서 하나씩 삭제;
+            t = a[m];
+            a[m] = a[i];
+            a[i] = t;
+            
+        }
+        return this;
+    };
+    
+    var array = [0,1,2,3,4,5,6,7,8,9];
+    console.log(array[Symbol.for("shuffle")]());
+
+    
+    console.log("9.10.2 객체 리터럴에 추가된 기능");
+    console.log("계산된 프로퍼티이름(Computed Property name) : {[계산식] : value}");
+    
+    var prop = "name"
+    var i = 1;
+    
+    var obj= {[prop+i] : "Tom"};
+    console.log(obj); // -> {name1 : "Tom"}
+    
+    var obj = {[Symbol("heart")] : "A"}
+    console.log(obj); // -> {Symbol(heart) : "A"}
+    
+    console.log("프로퍼티 정의의 약식 표기 : {prop} ");
+    /* {prop : prop } 을 {prop}으로 사용 */
+    var prop = 2;
+    var obj = {prop};
+    console.log(obj); // -> {prop:2}
+    
+    
+    console.log("메소드 정의의 약식 표기 : { method() {} } ");
+    /* function이 없으므로 prototype을 가지지 않음. */
+    
+    //after
+    var person = {
+        name : "Tom",
+        sayHello() { console.log("Hello , " + this.name); }
+    };
+    
+    //before 
+    var person2 ={
+        name : "Tom",
+        sayHello : function() { console.log("Hello , " + this.name);}
+    };
+    
+    
+    person.sayHello();
+    person2.sayHello();
+    
+    console.log("제너레이터 정의의 약식 표기 : { *generator () {} }");
+
+</script>
+<body>
+</body>
+</html>

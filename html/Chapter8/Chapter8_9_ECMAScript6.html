@@ -49,7 +49,8 @@
 //    console.log(iter.next()); // Object { values : undefined , done : true}
     
     //for(v of iter) console.log("iter v ->" + v); //iter is not iterable;
-    //interator를 iterable하게 생성
+    
+    //iterator를 iterable하게 생성
     var iterable = {};
     iterable[Symbol.iterator] = function() { return iter; };
     for(var temp of iterable ) console.log("temp -> " + temp);
