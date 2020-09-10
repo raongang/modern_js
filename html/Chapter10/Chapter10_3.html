@@ -56,10 +56,9 @@
 //    console.log(Array.prototype.push.call(b,"D"));  //4
     
     //slice는 진짜 배열로 변환하여 리턴한다.
+    var temp = Array.prototype.slice.call(b,2);
+    console.log(temp); //["C"];
     
-    var temp = Array.prototype.slice.call(b);
-    //console.log(Array.prototype.slice.call(b,2)); // ["A","B",C","D"]
-    console.log(temp); //["A","B","C"];
     
 
     
