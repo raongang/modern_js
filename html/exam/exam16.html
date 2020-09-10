@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>유사배열객체</title>
+</head>
+<script>
+
+    //유사배열객체
+ var test = function(){
+     
+     var keys = Object.keys(arguments);
+     console.log(keys);
+     console.log(arguments.hasOwnProperty("length"));
+     
+     
+     for(var i=0, size= arguments.length; i < size; i++){
+         console.log(arguments[i]);
+     }
+     
+     //전부 false
+     console.log("===================================");
+     console.log(arguments instanceof Array);
+     console.log(Array.isArray(arguments));
+     console.log(Array.prototype.isPrototypeOf(arguments));
+     console.log(Object.getPrototypeOf(arguments)=== Array.prototype);
+   
+ };
+    
+test("hello","world");
+    
+    //배열
+    
+    //전부 true
+    var arr =[];
+    
+    console.log("===================================");
+    console.log(arr instanceof Array);
+    console.log(Array.isArray(arr));
+    console.log(Array.prototype.isPrototypeOf(arr));
+    console.log(Object.getPrototypeOf(arr) === Array.prototype);
+    console.log("===================================");
+
+    
+    //유사배열을 배열처럼 이용
+    
+    var test2 = function(){
+        
+        Array.prototype.forEach.call(arguemtns,function(arg){
+            console.log(arg);
+        })
+    };
+    
+    test("hello","world","hell");
+    
+    
+    
+</script>    
+<body>
+</body>
+</html>

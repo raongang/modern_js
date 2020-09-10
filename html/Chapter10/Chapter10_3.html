@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>Array</title>    
+</head>
+<script>
+    
+    console.log("10.3 유사배열객체 -> 배열은 아니지만 배열로 처리할 수 있는 객체");
+    
+    /*
+      1. 자바 스크립트에서 배열은 Array타입의 객체를 의미. Array타입의 객체는 아래 성질이 있음.
+      
+        - 0이상의 정수값을 프로퍼티로 갖는다.
+        - length프로퍼티가 존재한다.
+        - 배열도 객체의 하나이긴하다.
+        - Array.prototype 의 메소드를 상속받아서 사용함.
+         
+       2. 유사배열객체
+         - 위의 성질중에 프로퍼티 이름이 0 이상의 정수이며, length프로퍼티가 있는 객체는 대부분 배열로 다룰수 있고 이를 유사배열 객체라고 함.
+    */
+    
+    console.log("유사배열객체 직접 생성(Array.prototype의 메소드를 사용할 수 없음");
+    
+    //자바스크립트는 객체자체가 딕셔너리 형태의 연관배열(Associative Array)이므로, 객체를 참조할때, 연산자 외에도 []연산자로 참조가능.
+    
+    var a = {};
+    
+    for(var i=0; i<10; i++){
+        a[i] = i;
+    }
+    
+    console.dir(a);
+    console.log(a);
+
+    a.length=10;
+    //유사배열객체 합을 구한다.
+    for(var i=0, sum=0; i<a.length; i++) sum+=a[i];
+    
+    console.log("sum -> " + sum);
+    console.log("Array.prototype 메소드를 사용하는 방법");
+    
+    //Array.prototype 메소드 직접 사용불가하므로,Function.prototypeCall 메소드에서 간접 호출하면 사용가능하다. (Chapter8.5 참)
+    
+    var  b = {
+        0 : "A",
+        1 : "B",
+        2 : "C",
+        length : 3
+    };
+    
+//    console.log(b);
+//    console.dir(b);
+    
+//    console.log(Array.prototype.join.call(b,",")); //->"A,B,C"
+//    console.log(Array.prototype.push.call(b,"D"));  //4
+    
+    //slice는 진짜 배열로 변환하여 리턴한다.
+    
+    var temp = Array.prototype.slice.call(b);
+    //console.log(Array.prototype.slice.call(b,2)); // ["A","B",C","D"]
+    console.log(temp); //["A","B","C"];
+    
+
+    
+</script>
+<body>
+</body>
+</html>

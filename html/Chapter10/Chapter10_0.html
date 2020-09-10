@@ -5,8 +5,15 @@
     <title>Array</title>    
 </head>
 <script>
-    //배열은 Array.prototype을 상속함. ( __proto__ 가 Array)
-    //Array.prototype의 수정메소드는 원본 배열을 바로 수정함.
+    
+    
+    /* 배열은 Array.prototype을 상속함. ( __proto__ 가 Array)
+        
+        Array.prototype의 메소드는 수정메솓, 접근자메소드, 반복메소드가 있음.
+        
+        //Array.prototype의 수정메소드는 원본 배열을 바로 수정함.
+    */
+    
     console.log("Push 메소드");
     
     var a = ["a","b","c"];
@@ -19,11 +26,13 @@
     console.log("Pop 메소드");
     a.pop();
     console.log(a); //-> "a","b","c","d"
+   
     
     console.log("===============================================================");
     console.log("shift 메소드 -> 배열의 첫번째 요소 제거 후 배열요소를 왼쪽 이동(반환값은 삭제된 요소)");
     console.log(a.shift()); //"a"
     console.log(a); // "b","c","d"
+    
     
     console.log("===============================================================");
     console.log("unshift 메소드 -> 배열 앞부분에 요소를 한개 이상 추가한 후 모든 배열 요소를 오른쪽으로 이동(반환값은 배열의 길이)");
@@ -42,7 +51,7 @@
     console.log("두번째 인덱스의 값이 없고, 세번째 인덱스에 값이 없이므로 단순 index이후의 배열요소를 삭제한다.")
     console.log(b.splice(2)); //b-> ["A","B"] 반환값 : ["C","D"]
     
-    console.log("첫번째 인수가 음수면 이 값에 배열길이를 더한 값을 삭제 시작 위치로 간주");
+    console.log("첫번째 인수가 음수면 이 값에 배열길이를 더한 값을 삭제 시작 위치로 간주, 생략시 0으로 간주");
     var b = ["A","B","C","D"];
     console.log(b.slice(-1)); // b=["A","B","C"] 반환값 : ["D"]
     
