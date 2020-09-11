@@ -23,7 +23,6 @@
     console.log("유사배열객체 직접 생성(Array.prototype의 메소드를 사용할 수 없음");
     
     //자바스크립트는 객체자체가 딕셔너리 형태의 연관배열(Associative Array)이므로, 객체를 참조할때, 연산자 외에도 []연산자로 참조가능.
-    
     var a = {};
     
     for(var i=0; i<10; i++){
@@ -41,7 +40,7 @@
     console.log("Array.prototype 메소드를 사용하는 방법");
     
     //Array.prototype 메소드 직접 사용불가하므로,Function.prototypeCall 메소드에서 간접 호출하면 사용가능하다. (Chapter8.5 참)
-    
+
     var  b = {
         0 : "A",
         1 : "B",
@@ -51,7 +50,6 @@
     
 //    console.log(b);
 //    console.dir(b);
-    
 //    console.log(Array.prototype.join.call(b,",")); //->"A,B,C"
 //    console.log(Array.prototype.push.call(b,"D"));  //4
     
@@ -59,8 +57,16 @@
     var temp = Array.prototype.slice.call(b,2);
     console.log(temp); //["C"];
     
-    
-
+    var c = { 
+      0 : "A",
+      1 : "B",
+      2 : "C",
+     length : 3
+    };
+    //concat은 접근자메소드이므로 원본배열을 수정하지 않고 새로운 배열을 리턴한다.
+    //Array.prototype 의 메소드를 유사배열 객체에 적용할 수는 있지만, concat 메소드를 제외한 나머지 배열 메소드는 배열처럼 동작하지 않는다.
+    console.log(Array.prototype.concat.call(c,["D","E"]));
+    console.log(c);
     
 </script>
 <body>
