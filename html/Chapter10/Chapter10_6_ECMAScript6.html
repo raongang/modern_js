@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>ECMAScript6</title>    
+</head>
+<script>
+
+    console.log("===============================================================");
+    console.log("반복 가능한 객체의 비구조화 할당");
+    
+    var [a,b,c] = "ABC"; //a="A", b="B",c="C"
+    
+    function* crateNumbers(from,to){
+        while(from<=to) yield from++;
+    }
+    
+    var [a,b,c,d,e] = createNumber(10,15);
+    
+    console.log("===============================================================");
+    console.log("중첩된 자료 구조의 비구조화 할당");
+    
+    var [ a,[b,c]] = [1,[2,3]]; //var a= 1, b=2, c=3
+    var {a:x,b:{c:y,d:z}} = {a:1,b:{c:2,d:3}}; // var x=1,y=2,z=3
+    
+    var person = {name:"Tom", age:17, hobby=["Tennis", "Music"]};
+    var {name,age,hobby:[hobby1]} = person; // var name="Tom", age=17, hobby="Tennis" 
+    
+    
+    
+</script>
+<body>
+</body>
+</html>

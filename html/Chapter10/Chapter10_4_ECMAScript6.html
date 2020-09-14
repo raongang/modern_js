@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8" />
-    <title>Array</title>    
+    <title>ECMAScript6 Array</title>    
 </head>
 <script>
     
@@ -15,9 +15,46 @@
     
     var [a,b] = [1,2];
     
-    console.log("a -> " + a  + " , b -> " + b);
+    console.log("a -> " + a  + " , b -> " + b); // var a =1, b=2와 같음.
     
-    [a,b] = [2*a, ]
+    
+    [a,b] = [2*a, 3*b]; // a= 2*a, b = 3*b;
+    [a,b] = [b,a]; //a값과 b값을 교환함.
+    
+    
+    [a,b,c] = [1,2]; // a=1, b=2, c= undefined 
+    [a,b] = [1,2,3,]; // a=1,b=2 , 3은 무시됨
+    [,a,,b] = [1,2,3,4]; // a=2, b=4 나머지는 무시됨.
+    
+    console.log("===============================================================");
+    
+    var array, first, second; 
+    array = [first, second] = [1,2,3,4];
+    //first = 1, second = 2, array = [1,2,3,4]
+    console.log("first : " + first + " second : " + second);
+    console.log("Array : " + array);
+    
+    console.log("나머지요소");
+    
+    [a,b,...rest] = [1,2,3,4]; // a=1, b=2, rest=[3,4];
+    console.log("a : " + a + " b: " + b + " [rest] : " + rest);
+    
+    console.log("요소의 기본값");
+    //왼쪽은 기본값을 설정인데 c의 경우 우측에 해당하는 값이 없으므로 원래는 undefined이지만 기본값설정으로 인해 c=2 로 됨.
+    [a=0,b=1,c=2] = [1,2];
+    
+    console.log("함수가 배열로 반환한 값을 비구조화 할당받기");
+    
+    //2차원 좌표값(x,y) 를 원점 기준으로 각도 theta만큼 회전하기
+    function rotation(x,y,theta){
+        var s = Math.sin(theta), c = Math.cos(theta);
+        return [c*x - s*y , s*x + c*y];
+    }
+
+    var [a,b] = rotation(1,2,Math.PI/3);
+    console.log("a = " + a + " b = " + b);
+    
+    
 </script>
 <body>
 </body>

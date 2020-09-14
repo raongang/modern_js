@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>ECMAScript6 Object</title>    
+</head>
+<script>
+
+    console.log("===============================================================");
+    console.log("객체의 비구조화 할당(Object Destructuring)");
+    
+    var {a:x, b:y} = {a:1,b:2};
+    console.log("x : " + x + " y : " + y); //x=1,y=2 와 같음.
+    
+    //{a:x,b:y} = {a:y,b:x}; //x 값과 y값을 교환.
+    //{a:x,b:y} = {a:1,c:2}; // x=1, y = undefined 
+    //{a:x,b:y} = {a:1,b:2,c:3}; // a=1, b=2 , c는 무시.
+    
+    //객체의 프로퍼티를 변수에 대입.
+    var { sin: sin, cos : cos, tan : tan, PI: PI} = Math;
+
+    console.log("sin : " + sin + " cos : " + cos + "tan : " + tan + " PI : " + PI);
+    console.log(sin(Math.PI)/3);
+    console.log(Math.sin(Math.PI)/3);
+    
+    console.log("프로퍼티의 기본값");
+    var {a:x=1,b:y=2,c:z=3} = {a:2,b:4};
+    console.log(x + " " +  y + " " +  z ); // x=2, y=4, z=3
+    
+    console.log("프로퍼티 이름 생략하기");
+    var {a,b} = {a:1,b:2}; // {a:a,b:b} = {a:1,b:2} 와 같음.
+    var {sin,cos,tan,PI} = MATH;
+    
+    //프로퍼티 이름을 생략한 상태에서 기본값 설정
+    var {a=1,b=2,c=3} = { a:2, b:4}; //a=2,b=4,c=3
+    
+    
+    
+    
+    
+    
+</script>
+<body>
+</body>
+</html>
