@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>ECMAScript6</title>    
+</head>
+<script>
+ //같은 ArrayBuffer객체로 형식화 배열을 여러 개 생성하면 그 형식화 배열들은 같은 ArrayBuffer 객체를 공유한다.
+    
+ var buffer = new ArrayBuffer(16);
+ var a_uint8 = new Uint8Array(buffer); //부호없는 8비트 정수
+ var a_uint16 = new Uint16Array(buffer); //부호없는 16비트 정수
+ var a_uint32 = new Uint32Array(buffer); //부호없는 32비트 정수
+ var a_float64 = new Float64Array(buffer); //64비트 부동소수점 타입
+    
+console.log(buffer.BYTES_PER_ELEMENT); //undefined
+console.log(a_uint8.BYTES_PER_ELEMENT); //1
+console.log(a_uint16.BYTES_PER_ELEMENT); //2
+console.log(a_uint32.BYTES_PER_ELEMENT); //4
+console.log(a_float64.BYTES_PER_ELEMENT); //8
+    
+a_uint8[0] = 170; // 10101010(2)
+a_uint8[1] = 240;
+    
+console.log(a_uint16[0]); //61610
+    
+    
+console.log("오프셋을 지정해서 형식화 배열 생성하기");
+
+var buffer = new ArrayBuffer(16);
+var a = new Int8Array(buffer,2,5);
+// ArrayBuffer객체에서 형식화 배열이 시작되는 오프셋 위치
+console.log(a);
+    
+//하나의 ArrayBuffer객체에 여러개의 변수와 프로퍼티를 오프셋을 바꾸어 할당.
+
+    var buffer2 = new ArrayBuffer(24);
+    var person = {
+        id : new Uint32Array(buffer2,0,1),
+        name : new Uint8Array(bufer2,4,16),
+        weight : new Float32Array(buffer2,20,1);
+    };
+    
+</script>
+<body>
+</body>
+</html>
+
+

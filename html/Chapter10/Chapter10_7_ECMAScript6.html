@@ -7,13 +7,79 @@
 <script>
     
     console.log("===============================================================");
-    console.log("10.4.3 ArrayBuffer와 형식화 배열");
+    console.log("10.4.3 ArrayBuffer와 형식화 배열");    
     
-    //ArrayBuffer, DataView, 형식화배열(TypedArray) 은 연속된 데이터 영역(버퍼)를 조작하기 위해 만들어진 객체.
+    /* 
     
+        ArrayBuffer, DataView, 형식화배열(TypedArray) 
+            - 연속된 데이터 영역(버퍼)를 조작하기 위해 만들어진 객체.
+            - 배열과 이미지 데이터를 빠르게 읽고 쓸수 있음.
+       ArrayBuffer : 버퍼 제공
+       DataView : 버퍼에 뷰 제공
+       
+    */
     
+    console.log("ArrayBuffer 생성자"); 
+    //메모리에 고정 길이는 가진(길이가 변하지 않는) 인접한 영역(버퍼)확보 , 조작하는 메소드는 제공하지 않음.
+    //메모리를 조직화 할 경우에는 DataView나 TypedArray 객체를 이용해야 함.
     
+    var buffer = new ArrayBuffer(1024); //1024Byte
+    console.log(buffer.byteLength); //읽기전용
     
+    var copy = buffer.slice(3,6);
+    console.log(copy.byteLength); //3
+    
+    console.log("형식화배열");
+    
+    // Array객체는 배열요소를 읽고 쓰기가 느림므로 빠른 읽기와 쓰기가 가능한 TypedArray객체를 이용할 수 있다.
+    //부호있는 8비트 정수 -128 ~ 127
+    var a = new Int8Array(10); // 형식화배열, 0으로 초기화
+    console.log(a);
+    
+    //형식화 배열요소의 데이터 길이 구하기.
+    console.log(a.length); //10
+    console.log(a.BYTES_PER_ELEMENT); //1
+    
+    //읽고 쓰기
+    console.log(a[0]);
+    
+    console.log("===============================================================");
+    
+    var buffer = new ArrayBuffer(100);
+    var a1 = new Int16Array(buffer); //형식화 배열, 부호있는 16비트 정수.
+    console.log(a1.BYTES_PER_ELEMENT); //2
+    console.log(a1.length); //50
+    
+    console.log("===============================================================");
+
+    var aa = new Int16Array(10);
+    for(var i=0; i<10; i++){
+        aa[i] = i;
+    }
+    //다른 형식화 배열을 인수로 넘기면 그 배열의 복사본이 만들어진다.
+    var bb = new Int16Array(aa); //bb에 aa의 복사본이 할당됨.
+    console.log(bb);
+    console.log(aa===bb); //false
+
+    console.log("===============================================================");
+    var aaa = [1,2,3,4,5];
+    var bbb = new Float64Array(aaa);
+    console.log(bbb); // [1,2,3,4,5]
+    console.log(aaa===bbb); //false
+    
+    console.log("===============================================================");
+    //형식화 배열은 일반 배열과 마찬가지로 반복가능한(이터러블한) 이터레이터임.
+    var aaaa = new Uint8Array([0,1,-1]);
+    for(var v of aaaa) console.log(v); // 0 1 255
+    
+    console.log("형식화배열(TypedArray)은  ArrayBuffer 객체의 뷰");
+    //형식화 배열의 요소는 ArrayBuffer 객체의 영역안에 저장됨.
+    //형식화 배열을 저장한 ArrayBuffer의 참조는 buffer 프로퍼티로 가져 올 수 있다.
+    
+    var temp = new Int8Array(10);
+    var buffer = temp.buffer; 
+    console.log(buffer.byteLength); //10
+     
 </script>
 <body>
 </body>

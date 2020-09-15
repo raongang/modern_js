@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>Map</title>    
+</head>
+<script>
+
+    console.log("10.4.4 Map");
+    console.log("Map 객체의 생성");
+    
+    var map = new Map();
+    console.log(map); // -> Map{}
+    
+    //초기값 설정 
+    var zip = new Map([["Tom","131-8634"], ["Huck","556-0002"]]); //{"Tom" => "131-8634", "Huck" => "556-0002"}
+    console.log(zip);
+    
+    //제너레이터(반복가능한 iterator 값을 반환) 로 이터레이터를 생성하는 방식.
+    function* makeZip(){
+        yield ["Tom2","131-8634"];
+        yield ["Huck2","556-0002"];
+    }
+    
+    var zips = makeZip();
+    zip = new Map(zips);
+    console.log(zip); // -> {"Tom2" => "131-8634", "Huck2" => "556-0002
+    console.log("zip 사이즈 " + zip.size); ///2
+    
+    console.log("Map 객체의 메소드");
+    // Map.prototype 의 프로퍼티와 메소드를 상속받음.
+    //데이터 추가하기
+    
+    var temp = new Map();
+    temp.set("Tom","131-8634");
+    temp.set("HUL","131-1234");
+    console.log(temp); // -> {"Tom" => "131-8634", "HUL" => "131-1234"}
+    temp.clear();
+    console.log(temp);
+    
+    //모든 키값의 열거
+    var zip2 = new Map([["Tom2","131-8634"],["Huck2","556-0002"]]);
+    
+    var iterKey = zip2.keys();
+    var iterValue = zip2.values();
+    var iterAllData = zip2.entries();
+    
+    for(var v of iterKey) console.log(v); //-> Tom2, Huck2
+    for(var v of iterValue) console.log(v); 
+    for(var v of iterAllData) console.log(v);
+    
+    //Map객체는 그 자체가 반복가능한 객체임.
+    for(var v of zip2) console.log(v);
+    
+    //Map의 비구조화 할당이용
+    for(var [key, value] of zip2 ) console.log(key,value);
+    
+    //모든데이터를 함수로 처리하기 
+    var zip3 = new Set(["131-8634", "556-0002"]);
+    zip3.forEach(function(value1,value2,map){
+       console.log(value1 + " => " + value2); 
+    });
+    
+    
+    
+    
+    
+    
+</script>
+<body>
+</body>
+</html>
+
+
