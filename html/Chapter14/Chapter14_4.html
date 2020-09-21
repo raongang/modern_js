@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+</head>
+
+<script>
+
+     window.onload = function(){
+       
+        
+        console.log("14.3 속성 값의 읽기와 쓰기.");
+        var anchor = document.getElementById("school");
+        //요소 객체의 프로퍼티로 요소의 속성을 읽고 쓰기 -> 요소객체.속성이름
+        console.log(anchor.href);
+        
+        anchor.href = "http://www.gilbut2.co.kr/";
+        console.log(anchor.href);
+        
+         
+        console.log("14.3.3 속성 값 가져오기.");
+        var result = [];
+        var fm = document.getElementById("favorite");
+        var list  = fm.children;
+         
+        
+         for(var i=0; i<list.length; i++){
+             if( (list[i].nodeName == "INPUT") && (list[i].type=="checkbox")){             
+                 result.push(list[i].getAttribute("value"));
+             }
+         }
+        
+          console.log(result.join(","));
+         
+             console.log("14.3.4 속성 값 설정하기.");
+            //해당 속성이 없을 경우에는 새롭게 추가하고 설정한다.
+            var anchor2 = document.getElementById("school");
+            //요소객체.setAttribute(속석이름,속성값);
+            anchor2.setAttribute("href","http://www.gilbut.co.kr/");
+            console.log(anchor2);
+     };
+    
+
+    
+</script>
+
+<body>
+  <!---->
+  <a id="school" href="http://school.gilbut.co.kr">길벗스쿨</a> 
+  
+  
+  <form id="favorite">
+        <input type="checkbox" name="dog" value="pome">pome<br>
+       <input type="checkbox" name="dog" value="dalma">dalma<br>
+       <input type="checkbox" name="dog" value="bool">bool<br>
+      
+  </form>
+</body>
+</html>
+
+
+
+
+
+
+    

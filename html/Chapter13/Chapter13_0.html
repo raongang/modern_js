@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>웹브라우저의객체</title>    
+</head>
+<script>
+    console.log("===============================================================");
+    console.log("13. 웹브라우저의 객체.");
+    // 렌더링 엔진 : 웹 브라우저에서 HTML문서를 분석하고 표시하는 프로그램.
+    
+    console.log("13.1.6 Window 객체");
+    //Window객체는 전역객체이며, 전역 변수는 Window 객체의 프로퍼티임. 또한 웹브라우저에서 사용할수 있는 다양한 객체가 모두 Window 객체의 프로퍼티(ex. Document Object)
+    //Window 객체의 프로퍼티와 메소드는 window 프로퍼티로 참조 가능.  ex) window.document ( window 생략가능 )
+    
+    console.log("13.2 Location 객체.");
+    // Location 객체는 창에 표시되는 문서의 URL을 관리합니다. 
+    // 참조 : window.location, location,   document.location
+     
+    //ex1. 이전의 URL을 이력으로 남기므로 뒤로 가기 가능.
+    //location.href="http://www.gilbut.co.kr/"; //프로퍼티이용
+    //location.assign("http://www.gilbut.co.kr/"); //메소드이용
+    
+    //ex2. 이전의 URL이 이력으로 남지 않음.
+    location.replace("http://www.gilbut.co.kr/");
+    
+    // ※고차함수 : 함수를 인수로 받는 함수 또는 함수를 반환하는 함수, 처리패턴이 같은 작업을 추상화하여 하나로 합칠 수 있음
+    
+    //ex3. 상대경로 지정 ( 이전 웹페이지 사이트루트에 대한 상대URL로 인식, 즉 www.gilbut.co.kr 에 대한 상대경로로 인식)
+    window.setTimeout(function(){
+        location.replace("/book/bookList.aspx");
+    },3000);
+    
+    
+    
+
+</script>
+<body>
+</body>
+</html>
+
+
+
+

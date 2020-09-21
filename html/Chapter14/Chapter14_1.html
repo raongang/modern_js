@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+</head>
+
+<script>
+    console.log("===============================================================");
+    console.log("14.2 노드 객체 가져오기");
+    
+    
+     window.onload = function(){
+        var element = document.getElementById("second");
+        element.innerHTML="수정";
+         
+        var name = document.getElementsByTagName("div");
+         console.log("===============================================================");
+        console.log(name);
+        
+         //NodeLsit 객체(유사배열)로 리턴(읽기전용)
+         name[2].innerHTML = "태그 수정";
+         
+         var allElemnts = document.getElementsByTagName("*");
+         
+         var firstDivParse = name[0].getElementsByTagName("p");
+         console.log("===============================================================");
+         console.log(firstDivParse);
+
+         
+         
+         
+     };
+</script>
+
+<body>
+  <div><p class="important">Document Object Model</p></div>
+  <!--id는 유일한 값 중복불가 -->
+   <div id="first">첫번째 div</div>
+   <div id="second">두번째 div</div>
+   <div id="third">세번째 div</div>
+   
+   
+</body>
+</html>
+
+
+
+
+
+

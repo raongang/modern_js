@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+</head>
+
+<script>
+
+     window.onload = function(){
+        var cats = document.getElementsByClassName("white cat");
+         for(var i=0; i<cats.length; i++){
+             console.log(i+" th cat : " + cats[i].innerHTML);
+         }
+         
+         var parse = document.getElementsByTagName("p");
+         for(var i=0; i<parse.length; i++){
+             console.log(i+" th parse : " + parse[i]);
+         }
+         var firstParaImportants = parse[0].getElementsByClassName("important");
+         console.log(firstParaImportants);
+         
+     };
+</script>
+
+<body>
+   <!-- class, name 요소는 같은 이름 중복 가능 -->
+   <p><string class="important">Document Object Model</string></p>
+    <div class="cat black">bombei</div>  
+    <div class="cat white">persian</div>
+    <div class="dog white">spichz</div>
+    
+   
+   
+</body>
+</html>
+
+
+
+
+
+

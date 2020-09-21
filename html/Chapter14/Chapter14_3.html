@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+</head>
+
+<script>
+
+     window.onload = function(){
+        var dogs =   document.getElementsByName("dog");
+         console.log(dogs);
+         dogs[1].value = "corgi";
+         dogs[1].nextSibling.nodeValue="웰시";
+         for(var i=0; i < dogs.length; i++){
+             console.log(i + " th value : " + dogs[i].value);
+         }
+     };
+    
+</script>
+
+<body>
+   <form>
+       <input type="checkbox" name="dog" value="pome">pome<br>
+       <input type="checkbox" name="dog" value="dalma">dalma<br>
+       <input type="checkbox" name="dog" value="bool">bool<br>
+       
+   </form>
+</body>
+</html>
+
+
+
+
+
+

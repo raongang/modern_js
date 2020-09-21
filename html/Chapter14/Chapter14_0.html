@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+</head>
+
+<script>
+    console.log("===============================================================");
+    console.log("14.1.1 DOM트리");
+    
+    /*
+     웹페이지 내용은 DOM (Document Object Model) 객체가 관리.
+     웹 브라우저가 웹 페이지를 읽어 들이면 렌더링 엔진은 웹페이지의 HTML 문서 구문을 해석하고 Document 객체에서 문서 내용을 관리하는 DOM 트리라고 하는 객체의 트리 구조를 생성한다.
+    */
+    
+     window.onload = function(){
+        console.log(document);
+        
+        /* childNodes 는 유사배열형태로 제공한다.
+           브라우저마다 공백노트 존재 유무가 다르므로, 아래 방식으로 잘 안쓰고 요소의 id나 class속성을 가져오는 
+            방식을 주로 이용한다.
+        */
+        console.log(document.childNodes[1].childNodes[2]); //body.
+        
+        console.log("===============================================================");
+         console.log("주요 노드 객체");
+        console.log(document.constructor);
+        console.log(document.nodeName, document.nodeValue, document.nodeType);
+         
+        var element = document.children[0].children[1].firstElementChild;
+         console.log(element.constructor);
+        console.log(element.nodeName, element.nodeValue, element.nodeType); 
+         
+         
+         
+         
+        
+     };
+    
+    
+    
+    
+</script>
+<body>
+    What is DOM?
+    <p><strong>Document Objec Model</strong></p>
+</body>
+</html>
+
+
+
+

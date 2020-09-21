@@ -13,18 +13,53 @@
     
     //[abc] -> 'a','b','c'중 문자 한개와 일치.
     //정규표현식 리터릴일때는 /로 묶어야 한다.
-    console.log(/[0123456789]/.test("10")); //->true
+    console.log(/[0123456789]/.test("10 little indians")); //->true
     
     /* -(하이픈) 이용으로 문자의 범위 지정 가능. 
        [a-z]     : 전체 소문자 중 문자 한개
-       [abcx-z]  : [a] [b] [c] [x] [y] [z] 중 문자 하나
-       
+       [abcx-z]  : [a] [b] [c] [x] [y] [z] 중 문자 하나   
        [a-zA-Z0-9] : 모든 알파벳과 숫자중 문자 한 개
-    
     */
+    
+    console.log("부정문자 클래스 : [^...]");
+    console.log(/[^0-9]/.test("137")); //false
+    
+    
+    console.log("===============================================================");
+    console.log("12.2.2.3 문자 클래스의 단축표기");
+    
+    console.log("===============================================================");
+    console.log("숫자와 숫자 외의 문자 : \d, \D");
+    //  \d는 숫자로 해석할수 있는 문자 한개와 일치  \d 는 [0123456789] 의 단축표기
+    //  \D는 숫자 외의 문자와 일치 \D 는 [^0123456789]의 단축표기
+    
+    var dateTime = /\d\d\d\d-\d\d-\d\d \d\d:\d\d/;
+    
+    console.log(dateTime.test("it's 2016-08-27 10:15")); //true
+    console.log(dateTime.test("2016-Aug-27 10:15")); //false
+    
+    console.log("===============================================================");
+    console.log("단어 문자와 단어 문자 외의 문자 : \w,\W");
+    
+    // \w는 모든 영어 단어 문자(알파벳,숫자,언더스코어) , \w = [a-zA-Z0-9_] 의 단축표기 , \W = [^a-zA-Z0-9_]
+    console.log(/\w/.test("A")); //true
+    console.log(/\w/.test("!@#$%-")); //false
+    
+    console.log("===============================================================");
+    console.log("공백문자와 공백 문자 외의 문자 : \s, \S");
+    // \s는 모든 공백문자(공백문자, 탭문자, 개행문자)와 일치.
+    
+    console.log(/\s\w\w/.exec("JavaScript RegExp")); // -> [ "Re"]
+    console.log(/\s\w\w/.exec("JavaScriptRegExp")); // -> null
+                
+    
     
     
 </script>
 <body>
 </body>
 </html>
+
+
+
+
