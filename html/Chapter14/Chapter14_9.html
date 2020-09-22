@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+<script>
+    
+    /* 
+        HTML 요소를 생성하는 편리한 함수.
+        요소이름, 속성이름과 속성값, 자식노드를 포함하는 요소 객체를 생성해주는 함수.
+    */
+    
+    function elt(name,attributes){
+        var node = document.createElement(name);
+        
+        if(attributes){
+            for(var attr in attributes){
+                if(attributes.hasOwnProperty(attr)){
+                    node.setAttribute(attr,attributes[attr]);
+                }//end inner if
+            }//end for
+        }//end outer if
+        
+        
+        /*
+           자바스크립트에서는 함수를 호출시 인수들과 함께 암묵적으로 arguments 유사배열객체가 함수내부로 전달된다.
+        */
+        console.dir(arguments);
+        for(var i=2; i < arguments.length; i++){
+            var child = arguments[i];
+        
+            if( typeof child == 'string'){
+                child = document.createTextNode(child);
+            }
+            node.appendChild(child);
+        }
+        
+        return node;
+    }//end function
+    
+    
+    window.onload = function(){     
+        
+        //button 생성예제.
+        var input = elt("input", {type: "button", value:"click"});
+        document.body.appendChild(input);
+        
+        //select 메뉴 생성
+        var bloodtypes = ["A","B","O","AB"];
+        
+        var form = elt("form",{id:"menu"});
+        var select = elt("select", {name:"booldtype", id:"booldtype"});
+        
+        bloodtypes.forEach(function(type){
+           select.appendChild(elt("option",null,type));
+        });
+        
+        form.appendChild(select);
+        document.body.appendChild(form);
+     };
+    
+    /* 14.5.3 노드 삭제하기 
+        노드.removeChild(자식 노드)
+        
+        특정노드 삭제하기
+        node.parentNode.removeChild(node);
+        
+        
+        14.5.4 노드 치환하기 
+        노드.replaceChild(새로운노드,자식노드)
+        
+        특정노드(node)를 새로운 노드(newnode)로 치환하고자 할때는 다음과 같이 작성
+        
+        node.parentNode.replaceChild(newnode,node);
+        
+    */
+     
+</script>
+    
+</head>
+<body>
+<!--
+<form id="menu">
+    <select name="bloodtype" id="booldtype">
+        <option>A</option>
+        <option>B</option>
+        <option>O</option>
+        <option>AB</option>
+    </select>    
+</form>
+-->
+</body>
+</html>
+
+
+
+
+
+
+    

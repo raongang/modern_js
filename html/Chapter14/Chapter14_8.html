@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+    
+    
+<script>
+    
+    /* HTML 요소를 생성하는 편리한 함수.
+        요소이름, 속성이름과 속성값, 자식노드를 포함하는 요소 객체를 생성해주는 함수.
+    */
+    
+    function elt(name,attributes){
+        var node = document.createElement(name);
+        
+        if(attributes){
+            for(var attr in attributes){
+                if(attributes.hasOwnProperty(attr)){
+                    node.setAttribute(attr,attributes[attr]);
+                }//end inner if
+            }//end for
+        }//end outer if
+        
+        
+        /*
+           자바스크립트에서는 함수를 호출시 인수들과 함께 암묵적으로 arguments 유사배열객체가 함수내부로 전달된다.
+        */
+        console.dir(arguments);
+        
+        for(var i=2; i < arguments.length; i++){
+            var child = arguments[i];
+        
+            if( typeof child == 'string'){
+                child = document.createTextNode(child);
+            }
+            node.appendChild(child);
+            
+        }
+        
+        return node;
+    }//end function
+    
+    
+    window.onload = function(){     
+        var headline = elt("h1",null,"DOM에 관하여");
+        document.body.appendChild(headline);
+     }
+     
+</script>
+    
+</head>
+
+
+
+
+<body>
+  
+
+</body>
+</html>
+
+
+
+
+
+
+    

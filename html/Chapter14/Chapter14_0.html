@@ -11,8 +11,14 @@
     console.log("14.1.1 DOM트리");
     
     /*
-     웹페이지 내용은 DOM (Document Object Model) 객체가 관리.
-     웹 브라우저가 웹 페이지를 읽어 들이면 렌더링 엔진은 웹페이지의 HTML 문서 구문을 해석하고 Document 객체에서 문서 내용을 관리하는 DOM 트리라고 하는 객체의 트리 구조를 생성한다.
+     웹페이지 내용은 Document 객체가 관리.
+     웹 브라우저가 웹 페이지를 읽어 들이면 렌더링 엔진은 웹페이지의 HTML 문서 구문을 해석하고 Document 객체에서 문서 내용을 관리하는 DOM(Document Object Model)트리라고 하는 객체의 트리 구조를 생성한다.
+     
+     
+     노드(Node) - DOM 트리를 구성하는 객체 하나.
+        문서 노드 - 전체 문서를 가리크는 Document 객체. document로 참조가능
+        HTML요소 노드 - HTML 요소를 가르키는 객체 (요소객체)
+        텍스트 노드 - 텍스트를 가르키는 객체.
     */
     
      window.onload = function(){

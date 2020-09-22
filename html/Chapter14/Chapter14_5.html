@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+</head>
+
+<script>
+
+     window.onload = function(){
+         /* 전체속성의 목록가져오기         
+             - 요소 객체의 attributes 프로퍼티 정의되어 있음
+             - attributes 프로퍼티는 NamedNodeMap 유사배열 객체이며 읽기 전용임.
+         */
+         
+        var para = document.getElementById("controls");
+         var list = para.firstElementChild.attributes;
+         
+         for(var i=0; i < list.length; i++){
+             console.log(list[i].name + " : " + list[i].value);
+             
+             //NamedNodeMap은 속성값으로도 가져올수 있음.
+         }
+        console.log("===============================================================");         
+         console.log(list["type"].value);
+         console.log(list["value"].value);
+         console.log(list.onclick.value);
+     }
+
+</script>
+
+<body>
+     <p id="controls">
+         <input type="button" value="click" onclick="doSomething();">
+     </p> 
+</body>
+</html>
+
+
+
+
+
+
+    

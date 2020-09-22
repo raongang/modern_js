@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+    
+    
+<script>
+    
+    //14.5 DOM트리 조작 - 노드 생성/삽입/삭제하기.
+     window.onload = function(){     
+         
+         var doglist = document.getElementById("doglist");
+         
+         /*
+          create로 생성된 노드 객체는 메모리에 생성되어 있을 뿐. 문서의 DOM트리와는 연관이 없다.
+          => DOM트리의 계층구조를 뜻하는 프로퍼티(parentNode, childNode 등)
+         */
+         
+         //node 생성
+        var elem  = document.createElement("li");
+        var text = document.createTextNode("boolgod");
+         
+        // 요소의 마지막에 node 삽입
+         doglist.appendChild(elem);
+         elem.appendChild(text);
+         
+         //node 삽입의 다른 예.
+         //elem.textContent = "boolDog";
+         //doglist.appendChild(elem);
+         
+         /* 지정한 자식노드의 바로 앞에 삽입하기 : insertBefore 메소
+            요소노드.insertBefore(삽입할노드,자식노드)
+         */
+        var elemSecond  = document.createElement("li");
+        var textSecond = document.createTextNode("siba");
+         
+         //두번째 자식 요소앞에 삽
+        doglist.insertBefore(elemSecond, doglist.children[1]);
+        elemSecond.appendChild(textSecond);
+         
+        /* 노드 옮기기
+            - 이미 있는 노드를 appendChild,insertBefore로 삽입시 해당 노드를 현재 위치에서 삭제하고 새로운 위치에 삽입하게 된다
+        */
+         //첫번째 자식요소가 마지막으로 이동.
+        doglist.appendChild(doglist.children[0]);
+     }
+     
+</script>
+    
+</head>
+
+
+
+
+<body>
+    <ul id="doglist">
+        <li>pome</li>   
+        <li>dalma</li>
+    </ul>
+
+</body>
+</html>
+
+
+
+
+
+
+    

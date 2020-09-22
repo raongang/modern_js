@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>문서 제어</title>    
+</head>
+
+
+<script>
+    
+    //HTML요소의 내용을 읽고 쓰기
+     window.onload = function(){     
+        /* 14.4.1 innerHTML 프로퍼티 - 요소 안의 HTML코드를 가르킨다.
+                  textContent - 요소의 텍스트 정보
+        */
+         
+        var para = document.getElementById("crads").textContent; 
+        console.log(para);
+         
+        var compara = document.getElementById("crads");
+        console.log(compara);
+         
+        //p요소 내용 변경
+        var pTemp = document.getElementById("crads");
+        pTemp.innerHTML = "&diams;다이아는 <string>상인</strong>이라는 뜻입니다.";
+        console.log(pTemp.innerHTML);
+         
+         
+        /* 14.4.2 textContent와 innerText 프로퍼티
+            textContent - 특수문자가 이스케이프됨.
+        */
+         console.log("===============================================================");         
+         pTemp.textContent = "&diams;다이아는 <strong>상인</strong>이라는 뜻입니다.";
+      
+       
+         
+     }
+     
+     /* textContent는 IE9 이하에서는 사용 불가하여 innerText를 이용해야 함. */
+     //크로스 브라우징 대책 - 이거 호출해서 쓰는법 모르겠다.
+     function textContent(element){
+         
+         var content = element.textContent;
+         if(content != undefined ) return content;   
+         return element.innerText;      
+     }
+     
+</script>
+
+<body>
+
+  <p id="crads">&hearts;하트는 <em>승려</em>라는 뜻입니다.</p>
+  
+</body>
+</html>
+
+
+
+
+
+
+    
