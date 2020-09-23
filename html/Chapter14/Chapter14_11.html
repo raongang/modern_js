@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>HTML요소의 위치</title>    
+<script>
+    
+    /** HTML 요소의 위치 
+    
+    14.6.1 HTML요소의 위치를 표현하는 좌표계
+
+     1) 뷰포트 좌표계 ( 윈도우 좌표계 )
+        - 픽셀단위, 왼쪽 위 꼭짓점을 원점
+        - 뷰포트란, 웹 브라우저에서 문서의 내용을 표시하는 영역. (메뉴,도구모음, 탭등을 포함하지 않음)
+
+     2) 문서 좌표계 
+        - 픽셀단위, 문서의 왼쪽 위 꼭짓점을 원점으로 함.
+        - 문서는 웹브라우저 표시영역(뷰포트) 안에 표시되는데 문서를 스크롤할 경우 문서 좌표계의 원점이 뷰 포트를 따라 이동함.       
+        
+    */
+    
+   /**
+     특정 위치로 스크롤하기.
+        scrollTo 
+          - Window 객체의 메소드
+          - 뷰포트 좌표의 원점(표시 영역의 왼쪽 위 모서리)까지 스크롤
+   */
+    
+    window.onload = function(){     
+        
+        function getScrollTop(){
+            if(window.pageYOffset == undefined){
+                return window.pageYOffset;
+            }else{
+                return document.documentElement.scrollTop || document.body.scrollTop;
+            }
+        }//end function
+        
+        
+        function getScrollLeft(){
+            if(window.pageXOffset != null){
+                return window.pageXOffset;
+            }else{
+                return document.documentElement.scrollLeft || document.body.scrollLeft;
+                
+            }
+        }//end function
+        
+        //크롬을 비롯한 일부 브라우저에서는 스크롤 복원 기능을 꺼야 함.
+        if('scrollRestoration' in history){
+            history.scrollRestoration = 'manual';
+        }
+        
+        var element = document.getElementById("sec3");
+        //뷰 포트 좌표계로 측정한 해당 요소의 보더박스 위치와 크기정보를 담은 객체를 반환한다.
+        //즉, sec3의 실제 위치에 대한 정보를 담은 객체를 반환
+        var rect = element.getBoundingClientRect();
+         
+        console.log(rect.left);
+        console.log(rect.top);
+        console.log(getScrollLeft());
+        console.log(getScrollTop());
+        
+        scrollTo(rect.left + getScrollLeft(), rect.top + getScrollTop());
+        
+       //특정요소가 있는 위치까지 스크롤하기 
+        element.scrollIntoView(true);
+       
+     }; //end window.onLoad
+    
+</script>    
+</head>
+<style>
+    .box { 
+        display : inline-block;
+        padding : 100px;
+        margin : 100px;
+        margin-left : 0;
+        background-color : yellow;
+        border-color: lightseagreen;
+        border-style: solid;
+        
+        
+        
+    }    
+</style>
+<body>
+
+    <div class="box" id="sec1">#sec1</div><br/>
+    <div class="box" id="sec2">#sec2</div><br/>
+    <div class="box" id="sec3">#sec3</div><br/>    
+    
+
+</body>
+</html>
+
+
+
+
+
+
+    

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>CSS제어하기</title>    
+<script>
+    
+    window.onload = function(){     
+        
+        /* 인라인 스타일 제어 
+            
+            - 요소객체.style.프로퍼티이름=>값;
+            - 요소 객체가 가진 style 프로퍼티 값은 CSSStyleDeclaration 객체.
+        */
+        
+        //클릭시 색 변경
+        var element = document.getElementById("title");
+        element.onclick = function(){
+            element.style.background="pink";
+        }
+      
+        
+};//end window.onLoad
+
+</script>  
+  
+</head>
+
+<body>
+   
+    <h5 id="title">Java Script</h5>
+
+</body>
+</html>
+
+
+
+
+
+
+    
