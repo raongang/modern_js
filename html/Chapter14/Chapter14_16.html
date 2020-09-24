@@ -6,22 +6,41 @@
     <title>Test</title>    
     
 <style>
+    p { color:  red; }
 </style>    
+
 <script>
     
     window.onload = function(){     
         
         /* 인라인 스타일 제어 
-            
             - 요소객체.style.프로퍼티이름=>값;
             - 요소 객체가 가진 style 프로퍼티 값은 CSSStyleDeclaration 객체.
+            - 읽거나 쓰기 가능.
+            - stylesheet 의 설정보다 style속성에 작성된 값이 우선적으로 적용됨.
+            
+            
+            스타일sheet로 설정된 style값 가져오기
+              - style 프로퍼티로 구할 경우에는 빈 문자열로 표기됨
+              - Window 객체의 getComputedStyle 메소드를 이용
+              - 읽기 전용
         */
         
-        //클릭시 색 변경
-        var element = document.getElementById("title");
-        element.onclick = function(){
-            element.style.background="pink";
-        }
+
+        var element = document.getElementById("note");
+        console.log("Get style!");
+        console.log(element.style.color);  //빈 문자열
+        console.log(element.style.height); //빈 문자열
+        
+        console.log("====================================");
+        //getComputedStyle 사용 - 절대값으로 계산됨.
+        var computedStyles =getComputedStyle(element);
+        console.log(computedStyles.color);    // rgb(255,0,0)
+        console.log(computedStyles.height);   // 21.12px
+        
+        
+        
+    
       
         
 };//end window.onLoad
@@ -31,9 +50,7 @@
 </head>
 
 <body>
-   
-    
-
+   <p id="note">테스트</p>
 </body>
 </html>
 
