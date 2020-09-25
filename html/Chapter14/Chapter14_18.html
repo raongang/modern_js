@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>classList 프로퍼티</title>    
+    
+<style>
+
+</style>    
+
+<script>
+    
+    /*  
+        1. class 속성이 여러개일 경우 사용할수 있게 모든 객체 요소에 classList 프로퍼티가 있음(IE10이후부터 지원).
+        
+        2. classList 속성값은 DomTokenList 유사배열 객체이며 읽기 전용이다.
+        
+        3. classList 메소드 
+          - add / remove / toggle / contains   
+    */
+    
+    window.onload = function(){     
+
+        var element = document.getElementById("note1");
+        var list = element.classList;
+        
+        for(var i=0; i < list.length; i++) { 
+            console.log(list[i]); //note invisible
+        }
+                
+    };//end window.onLoad
+
+</script>  
+  
+</head>
+
+<body>
+  <p class="note invisible" id="note1">...</p>
+</body>
+</html>
+
+
+
+
+
+
+    
