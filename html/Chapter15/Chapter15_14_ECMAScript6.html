@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>      
+
+<script>
+    
+    /* 15.8.6 Promise가 실행하는 콜백함수에 인수 넘기기
+        - promise 객체를 반환하는 함수를 정의해서 구현
+    */
+    
+    window.onload = function(){     
+        
+        //비동기
+        function buyAsync(mymoney){
+            return new Promise(function(resolve,reject){
+                window.setTimeout(function(){
+                    var payment= parseInt(prompt("Input pay money..."));
+                    var balance = mymoney - payment;
+                    
+                    if(balance>0){
+                        console.log(`${payment}원을 지불했습니다.`);
+                        resolve(balance);
+                    }else{
+                        reject(`잔액은 ${mymoney}원입니다. 구매할 수 없습니다.`);
+                    }
+                },1000);//end timeout
+            });//end return
+        }//end function
+        
+        
+        buyAsync(500).then(function(balance){
+            console.log(`잔액은 ${balance}원입니다.`);
+        }).catch(function(error){
+            console.log(error);
+        });
+        
+    };//end window.
+
+  
+</script>  
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
+
+
+
+    

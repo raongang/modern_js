@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>이벤트 전파</title>      
+
+<script>
+    
+    /* 15.4.2 이벤트의 전파
+        
+        1. 기본 동작 취소하기 : preventDefault메소드
+           - event.preventDefault()
+           - 해당 이벤트 객체의 cancelable 프로퍼티가 false일 경우 preventDefault가 먹히지 않음.
+    */
+    
+    window.onload = function(){     
+      
+        var anchor = document.getElementById("school");
+        anchor.addEventListener("click",function(e){
+            if(!confirm("페이지를이동하시겠습니까?")) e.preventDefault();    
+        },false); //버블링
+        
+    };//end window.onLoad
+    
+  
+</script>  
+</head>
+<body>
+    <a id="school" href="http://school.gilbut.co.kr">길벗스쿨</a>
+
+</body>
+</html>
+
+
+
+
+
+
+    

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>      
+
+<script>
+    
+    /* 15.8.8 비동기처리 여러 개를 병렬로 실행하기 ( Promise.all )
+       - 비동기 처리 여러개를 병렬로 실행하고 모든 처리가 끝난 후에 다음 작업을 실행함.
+    */
+    
+    window.onload = function(){     
+        
+        function buyAsync(name,mymoney){
+            return new Promise(function(resolve,reject){
+               setTimeout(function(){
+                   var payment= parseInt(prompt(`${name}님, 지불하고자 하는 금액을 입력하십시오`));
+                    var balance = mymoney - payment;
+                   
+                    if(balance>0){
+                        console.log(`${name} : ${payment}원을 지불했습니다.`);
+                        resolve(balance);
+                    }else{
+                        reject(`${name} : 잔액은 ${mymoney}원입니다. 구매할 수 없습니다.`);
+                    }                   
+               },1000);
+            });
+        }
+        
+        Promise.all(
+            [
+                buyAsync("TOM",500),
+                buyAsync("HUCK",600),
+                buyAsync("BECKY",1000)
+            ]
+        //인수로 response라는 배열을 받음.
+        ).then(function(balance){
+            console.log(balance);
+        }).catch(function(error){
+           console.log(error); 
+        });
+
+        
+    };//end window.
+
+  
+</script>  
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
+
+
+
+    

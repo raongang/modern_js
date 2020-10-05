@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>      
+
+<script>
+    
+    /* Promise.race 메소드
+        - 가장 먼저 종료한 Promise 객체의 결과만 다음 작업에 보낸다.
+        - 나머지도 실행은 되지만 가장 먼저 종료된 작업의 결괏값만 반환.
+    */
+    
+    window.onload = function(){     
+        
+        function buyAsync(name,mymoney){
+            return new Promise(function(resolve,reject){
+               setTimeout(function(){
+                   var payment= parseInt(prompt(`${name}님, 지불하고자 하는 금액을 입력하십시오`));
+                    var balance = mymoney - payment;
+                   
+                    if(balance>0){
+                        console.log(`${name} : ${payment}원을 지불했습니다.`);
+                        resolve(balance);
+                    }else{
+                        reject(`${name} : 잔액은 ${mymoney}원입니다. 구매할 수 없습니다.`);
+                    }                   
+               },1000);
+            });
+        }
+        
+        Promise.race(
+            [
+                buyAsync("TOM",500),
+                buyAsync("HUCK",600),
+                buyAsync("BECKY",1000)
+            ]
+        //인수로 response라는 배열을 받음.
+        ).then(function(balance){
+            console.log(balance);
+        }).catch(function(error){
+           console.log(error); 
+        });
+
+        
+    };//end window.
+
+  
+</script>  
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
+
+
+
+    

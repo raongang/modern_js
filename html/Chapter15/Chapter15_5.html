@@ -7,16 +7,18 @@
 
 <script>
     
-    /* 
-        Window 객체나 XMLHttpRequest 객체처럼 단독으로 존재하는 객체에서 이벤트가 발생시 웹브라우저는 해당 객체에 등록된 이벤트 처리기를 호출.
-        그러나 이벤트가 HTML요소에서 발생하면 그 요소는 물론 그 요소의 모든 조상 요소에 이벤트를 전파한다.
+    /* 15.4.2 이벤트의 전파
+        
+        1. 이벤트 전파 일시정지 : stopImmediatePropagation 메소드
+           - 그 다음 요소로의 이벤트 전파가 일시적으로 멈춤
+           - 그 요소 객체의 그 이벤트에 등록한 다른 이벤트 리스너도 일시적으로 멈춤
+           - event.stopImmediatePropagation()
     */
     
     window.onload = function(){     
-     
         /*
             실행순서
-              - outer capturing -> inner2 bubbling -> outer bubbling      
+              - outer capturing -> inner2(1) 
         */
         
         var outer = document.getElementById("outer");
@@ -33,8 +35,14 @@
         },true);
         
         inner2.addEventListener("click",function(e){
-           console.log("inner2 bubbling") ;
-        },false);
+            console.log("inner2(1)");
+            //outer bubbling 전파되지 않음.
+           e.stopImmediatePropagation(); 
+        }, false);
+        
+        inner2.addEventListener("click",function(e){
+           console.log("inner2(2)") ;
+        });
         
     };//end window.onLoad
     

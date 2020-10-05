@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>이벤트 전파</title>      
+
+<script>
+    
+    /* 15.5 이벤트 리스너안의 this 
+        - 이벤트 리스너안의 this 값은 함수를 호출할때 그 함수가 속해 있던 객체의 참조.
+        
+        15.5.1 이벤트 리스너 안의 this는 이벤트가 발생한 요소 객체.
+        15.5.2 this가 원하는 객체를 가르키도록 설정하는 방법
+           - bind메소드 이용.
+           - 익명 함수 안에서 실행하는 방법
+           - 화살표 함수를 사용하는 방법(ECMAScript6 추가)
+           - addEventListener의 두번째 인수로 객체를 넘기는 방법.
+    
+    */
+        
+    window.onload = function(){     
+        
+        function Person(name){
+            this.name = name;
+            // 화살표 함수 설정
+            //this.sayHello = () => { console.log("Hello ! " + this.name)};
+        }
+        
+        /* 일반 설정 */
+        Person.prototype.sayHello = function(){
+            console.log("Hello " + this.name);
+        }
+    
+        
+        var person = new Person("Tom");
+        var button = document.getElementById("button");
+        
+        /* ※ person.sayHello의 this가 person을 가르켜서 Hello Tom이 나올거 같지만, 
+            실제로는 button요소 객체를 가르키며 button 객체의 name프로퍼티 값은 빈 문자열이므로 Hello만 출력된다.
+        */
+        button.addEventListener("click",person.sayHello,false); //this는 빈 문자열
+        //button.addEventListener("click",person.sayHello.bind(person),false); //bind이용
+        
+        //익명 함수안에서 사용하는 방법 - 익명함수안에서 메소드를 호출하게 될 경우 그 메소드의 this가 메소드를 참조하는 객체를 가르키게 됨.
+        button.addEventListener("click",function(e){
+            person.sayHello();
+        });
+
+        
+        /* bind usage
+            - Function객체의 bind 메소드
+        */
+        function say(greetings, honorifics){
+            console.log(greetings + " " + honorifics + this.name);
+        }
+        
+        var tom = { name : "Tom Sawyer"};
+        var sayToTom = say.bind(tom);
+        sayToTom("Hello", "Mr.");
+        
+        
+        
+    };//end window.onLoad
+    
+  
+</script>  
+</head>
+<body>
+    <button id="button">Button</button>
+</body>
+</html>
+
+
+
+
+
+
+    

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>      
+
+<script>
+    
+    /* 15.8 비동기 처리를 간결하게 작성하는 Promise (ECMAScript6 추가)
+        - 비동기처리를 실행하고 그 처리가 끝난후에 다음 처리를 실행하기 위한 용도
+        - var promise = new Promise(function(resovle,reject){...});
+    */
+    
+    window.onload = function(){     
+        //실패에 대한 처리.
+        var promise = new Promise(function(resolve,reject){
+            
+            window.setTimeout(function(){
+                var n  = parseInt(prompt("10미만의 숫자를 입력하시오"));
+            
+                if(n<=10) {
+                    resolve(n);
+                }else{
+                    reject(`오류 : ${n}은 10이상입니다`);
+                }  
+            },1000);
+        });
+            
+        /* 성공실패에 대해 분리해서 작성
+        promise.then(function(num){
+           console.log(`2^${num} = ${Math.pow(2,num)}`) ;
+        }).catch(function(error){
+           console.log(error); 
+        });
+        */
+        
+        //성공실패에 대해 then메소드 하나로 처리
+        promise.then(
+            //성공했을때 callback function
+            function(num){
+                console.log(`2^${num} = ${Math.pow(2,num)}`);
+            },
+            
+            //실패했을때 callback 함
+            function(error){
+                console.log(error);
+            }
+        );
+        
+    };//end window.
+
+  
+</script>  
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
+
+
+
+    

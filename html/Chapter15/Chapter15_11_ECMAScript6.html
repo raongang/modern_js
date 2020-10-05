@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>      
+
+<script>
+    
+    /* 15.8 비동기 처리를 간결하게 작성하는 Promise (ECMAScript6 추가)
+        - 비동기처리를 실행하고 그 처리가 끝난후에 다음 처리를 실행하기 위한 용도
+        - var promise = new Promise(function(resovle,reject){...});
+    */
+    
+        
+    window.onload = function(){     
+      
+    /*  ex1.
+        //A->C->B 로 실행. 실제로는 0초후에 실행되지 않고 호출 스택에서 실행 문맥이 남아 있을때 그 작업이 끝날때까지 기다렸다가 가능한 빨리 실행함.
+        console.log("A");
+        window.setTimeout(function(){
+           console.log("B") ;
+        },0);
+        
+        console.log("c");
+        
+      };//end window.
+    */
+    
+    /* ex2. 실행순서대로 되게 기존의 비동기 처리방식
+        function sleep(callback){
+            window.setTimeout(function(){
+               callback(); 
+            },1000);
+        }
+
+        sleep(function(){
+           console.log("A");
+            sleep(function(){
+               console.log("B") ;
+                sleep(function(){
+                   console.log("C"); 
+                });
+            });
+        });
+     */
+        
+    //ex3. Promise use
+        var promise = new Promise(function(resolve,reject){
+           window.setTimeout(function(){
+               console.log("A");
+               resolve(); //함수안의 처리가 끝났을때 호출해야 하는 콜백함수로 Promise를 종료시킴. 인수로 넘긴 값은 then메소드에 인수로 넘긴 함수에 달되어 다음 처리를 위해 사용함.
+           },1000);
+        });
+        
+        promise.then(function(){
+            console.log("B");
+        });
+        
+    };//end window.
+
+  
+</script>  
+</head>
+<body>
+    <button id="button">Button</button>
+</body>
+</html>
+
+
+
+
+
+
+    
