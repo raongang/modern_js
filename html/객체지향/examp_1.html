@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+<script>
+    
+    /*
+        Inside JavaScript 4.5.8 디폴트 프로토타입은 다른 객체로 변경이 가능하다.
+         - 이 특징을 이용해서 객체지향이 상속을 구현한다.
+    */
+    
+    //function생성자 함수
+    function Person(name){
+        this.name = name;
+    }
+    
+    console.dir(Person.prototype.constructor);
+    
+    //foo객체생성
+    var foo = new Person('foo');
+    console.log(foo.country); //undefined 
+    
+    //디폴트 프로토타입 객체 변경 (객체 리터럴방식)
+    Person.prototype = {
+        country : 'korea'
+    };
+    console.log("========================================");
+    console.log(Person.prototype.constructor);
+    console.log("========================================");
+    //bar객체 생성
+    var bar = new Person('bar');
+    
+    // foo는 prototype변경전이라 그대로 나오며, bar는 변경이후라 변경이후의 내용이 나온다.
+    console.log(foo.country);
+    console.log(bar.country);
+    console.dir(foo.constructor);
+    console.dir(bar.constructor);
+    
+    console.log("========================================");
+</script>      
+</head>
+<body>
+</body>
+</html>

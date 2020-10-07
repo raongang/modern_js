@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+<script>
+ 
+    /* 객체 지향 프로그래밍- 캡슐화1
+         - 기본적으로 관련된 여러 가지 정보를 하나의 틀 안에 담는 것
+         - 정보은닉개념 포함
+    */
+    
+    var Person = function(arg){
+        
+        /* 
+           생성자 함수를 new를 통해 만들때 빈객체가 생성되고 prototype이 설정됨.
+           그리고 호출한 객체의 프로퍼티를 동적으로 추가하고 여기서 this는 호출한 객체의 this가 됨.
+           
+           this 객체의 프로퍼티로 선언하면 외부에서 new 키워드로 생성한 객체로 접근가능.
+
+        */
+        
+        var name = arg? arg : "zzoonn";
+     
+        this.getName = function(){
+            return name;
+        }
+        this.setName = function(arg){
+            name = arg;
+        }
+    };
+    
+    var me = new Person();
+    console.log(me.getName());
+    
+    me.setName("iamhjoo");
+    console.log(me.getName());
+    console.log(me.name);//undefined 
+   
+   
+</script>      
+</head>
+<body>
+</body>
+</html>

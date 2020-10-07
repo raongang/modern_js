@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+<script>
+    
+    /* 객체 지향 프로그래밍
+        - 자바스크립트는 프로토타입 기반의 언어
+        
+        - 클래스,생성자,메소드는 함수객체로 구현함.
+        - 이때, 메모리 낭비를 고려하여 클래스안의 메소드는 prototype 객체에 정의하여 new로 생성한 객체에서 __proto__로 접근하는게 좋음.
+        
+    */
+    
+
+    console.log("========================================");
+    
+    function Person(arg){
+        this.name = arg;
+        
+        this.getName = function(){
+            return this.name;
+        }
+        
+        this.setName = function(value){
+            this.name = value;
+        }
+    }
+    
+    var me = new Person("zzoon");
+    console.log(me.getName());
+    
+    me.setName("iamhjoo");
+    console.log(me.getName());
+    
+    
+    /*
+        문제점 : me, you, him 객체가 각각 자기 영역에서 공통으로 사용할 수 있는 setName, getName 함수를 따로 생성하므로 메모리 낭비가 발생
+        해결 : prototype을 이용.
+    */
+    console.log("========================================");
+    var you = new Person("you");
+    var him = new Person("him");
+    
+    
+    /*
+        위 문제 해결소스
+    */
+    
+    function Person2(arg){
+        this.name = arg;
+    }
+    
+    //이건 디폴트 prototype의 객체를 변경하는 것이 아닌 함수를 추가한것으로 contstructor가 존재함.
+    Person2.prototype.getName = function(){
+        return this.name;
+    }
+    
+    Person2.prototype.setName = function(value){
+        this.name = value;
+    }
+    
+    var me2 = new Person2("me");
+    var you2 = new Person2("you2");
+    
+    console.log(me2.getName());
+    console.log(you2.getName());
+    
+    console.dir(Person2.prototype);
+    console.dir(Person2);
+    
+    
+</script>      
+</head>
+<body>
+</body>
+</html>

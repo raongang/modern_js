@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+<script>
+ 
+    /* 객체 지향 프로그래밍2 - 상속
+        - 객체 프로토타입 체인을 이용해서 구현.
+    */
+    
+    console.log("========================================");
+    
+    //1. 프로토타입을 이용한 상속
+    
+    function create_object(o){
+        function F(){}
+        F.prototype = o;
+        return new F;
+    }
+    
+    var person = {
+        name : "zzoon",
+        getName : function(){
+          return this.name;  
+        },
+        setName : function(arg){
+            this.name = arg;
+        }
+    };
+    
+    //person객체를 상속하여 student객체를 만듬.
+    var student = create_object(person);
+    console.log(student.getName());
+    
+    console.dir(student);
+    
+    console.log("========================================");
+    
+    /*
+        student는 person 객체의 메소드를 그대로 상속받아서 사용함.
+        자식이 재정의 및 추가로 확장하기 위해 아래처럼 사용가능
+    */
+    
+    student.setName = function(name){
+        this.name = name;
+    }
+    student.getName = function(){
+        return this.name;
+    }
+    
+    
+    //student.setName("hi");
+    console.log(student.getName());
+    //console.dir(student);
+    console.log("========================================");
+    
+   /* 
+        위와 같은 방식은 코드가 지저분해지므로, extend() 라는 이름의 함수로 객체에 자신이 원하는 객체 혹은 함수를 추가할수 있음.
+   */
+    
+    //ex. jquery 의 extend 
+    
+    var person2 = {
+        name : "zzoon",
+        getName : function(){
+          return this.name;  
+        },
+        setName : function(arg){
+            this.name = arg;
+        }
+    };
+    
+    function create_object2(o){
+        function F(){}
+        F.prototype = o;
+        return new F;
+    }
+    
+    function extend(obj,prop){
+       
+        console.log("===================0=====================");
+        console.dir(obj);
+        
+        if(!prop) { prop = obj; obj = this; }
+        
+        for(var i in prop) {
+            console.log("===================1=====================");
+            console.dir(obj[i]);
+            console.dir(prop[i]);
+            
+            obj[i] = prop[i];
+            console.log("===================2=====================");
+        }
+        return obj;
+    }
+    
+    var student2 = create_object2(person2);
+    
+    var added = {
+        setAge : function(age){
+            this.age = age;
+        },
+        getAge : function(){
+            return this.age;
+        }
+    };
+    
+    extend(student2,added);
+    
+    student2.setAge(25);
+    console.log(student2.getAge());
+    
+   
+</script>      
+</head>
+<body>
+</body>
+</html>

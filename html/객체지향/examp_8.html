@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+<script>
+ 
+    /* 객체 지향 프로그래밍- 캡슐화2
+         - 기본적으로 관련된 여러 가지 정보를 하나의 틀 안에 담는 것
+         - 정보은닉개념 포함
+    */
+    
+    //var Person = function(arg){
+    var Person = function(arg){
+   
+        var name = arg? arg : "zzoonn";
+        
+        return {
+            getName : function(){
+                return name;
+            },
+            setName : function(arg){
+                name = arg;
+            }
+        };
+    }
+     
+
+    var me = Person();
+    console.log(me.getName());
+
+   
+</script>      
+</head>
+<body>
+</body>
+</html>

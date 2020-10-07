@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+<script>
+ 
+    /* 객체 지향 프로그래밍2 -  클래스 기반의 상속
+         - 객체 프로토타입 체인을 통한 상속은 객체 리터럴로 객체의 상속을 구현하였지만, 클래스 기반은 클래스 역할을 하는 함수를 상속한다.
+    */
+    
+    function Person(arg){
+        this.name = arg;
+    }
+    
+    Function.prototype.method = function(name,func){
+        
+        this.prototype[name]= func;
+    }
+    
+    Person.method("setName", function(value){
+        this.name = value;              
+    });
+    
+    Person.method("getName", function(){
+       return this.name; 
+    });
+    
+  
+    function Student(arg){
+        
+    }
+    
+    function F(){};
+    F.prototype = Person.prototype;
+    
+    Student.prototype = new F();
+    Student.prototype.costructor = Student;
+    Student.super = Person.prototype;
+    
+    var me = new Student();
+    me.setName("hulk");
+    console.log(me.getName());
+    
+   
+</script>      
+</head>
+<body>
+</body>
+</html>

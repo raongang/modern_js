@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+<script>
+ 
+    /* 객체 지향 프로그래밍2
+        - 자바스크립트는 프로토타입 기반의 언어
+        
+        - 클래스,생성자,메소드는 함수객체로 구현함.
+        - 이때, 메모리 낭비를 고려하여 클래스안의 메소드는 prototype 객체에 정의하여 new로 생성한 객체에서 __proto__로 접근하는게 좋음.
+        
+    */
+    
+
+    console.log("========================================");
+    
+    Function.prototype.method = function(name,func){
+        if(!this.prototype[name]){
+            this.prototype[name] = func;
+        }
+    }
+    
+    function Person(arg){
+        this.name = arg;
+    }
+    
+    /*
+    함수객체 Person은 __proto__ 함수 객체 프로토타입을 가진다. ( Function.prototype )
+    즉 Person의 __prototype__ 은 Function.prototype이 된다.
+    console.dir(Person);
+    console.dir(Function.prototype);
+    console.dir(Person.__proto__);
+    */
+    
+    Person.method("setName", function(value){
+        this.name = value
+    });
+    
+    Person.method("getName", function(){
+        return this.name;
+    });
+    
+    var me = new Person("me");
+    var you = new Person("you");
+    
+    console.log(me.getName());
+    console.log(you.getName());
+    
+    
+    
+    
+    
+</script>      
+</head>
+<body>
+</body>
+</html>
